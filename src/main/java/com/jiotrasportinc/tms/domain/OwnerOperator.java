@@ -76,7 +76,7 @@ public class OwnerOperator implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Insurance insurance;
+    private Insurance operInsurance;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -282,17 +282,17 @@ public class OwnerOperator implements Serializable {
         this.remarks = remarks;
     }
 
-    public Insurance getInsurance() {
-        return insurance;
+    public Insurance getOperInsurance() {
+        return operInsurance;
     }
 
-    public OwnerOperator insurance(Insurance insurance) {
-        this.insurance = insurance;
+    public OwnerOperator operInsurance(Insurance insurance) {
+        this.operInsurance = insurance;
         return this;
     }
 
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
+    public void setOperInsurance(Insurance insurance) {
+        this.operInsurance = insurance;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -85,15 +85,10 @@ public class LocationResource {
      * {@code GET  /locations} : get all the locations.
      *
 
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of locations in body.
      */
     @GetMapping("/locations")
-    public List<Location> getAllLocations(@RequestParam(required = false) String filter) {
-        if ("customer-is-null".equals(filter)) {
-            log.debug("REST request to get all Locations where customer is null");
-            return locationService.findAllWhereCustomerIsNull();
-        }
+    public List<Location> getAllLocations() {
         log.debug("REST request to get all Locations");
         return locationService.findAll();
     }

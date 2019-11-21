@@ -2,7 +2,6 @@ package com.jiotrasportinc.tms.web.rest;
 
 import com.jiotrasportinc.tms.JiotmsApp;
 import com.jiotrasportinc.tms.domain.Customer;
-import com.jiotrasportinc.tms.domain.Location;
 import com.jiotrasportinc.tms.repository.CustomerRepository;
 import com.jiotrasportinc.tms.repository.search.CustomerSearchRepository;
 import com.jiotrasportinc.tms.service.CustomerService;
@@ -168,16 +167,6 @@ public class CustomerResourceIT {
             .companyLogoContentType(DEFAULT_COMPANY_LOGO_CONTENT_TYPE)
             .customerSince(DEFAULT_CUSTOMER_SINCE)
             .remarks(DEFAULT_REMARKS);
-        // Add required entity
-        Location location;
-        if (TestUtil.findAll(em, Location.class).isEmpty()) {
-            location = LocationResourceIT.createEntity(em);
-            em.persist(location);
-            em.flush();
-        } else {
-            location = TestUtil.findAll(em, Location.class).get(0);
-        }
-        customer.setBillingAddress(location);
         return customer;
     }
     /**
@@ -206,16 +195,6 @@ public class CustomerResourceIT {
             .companyLogoContentType(UPDATED_COMPANY_LOGO_CONTENT_TYPE)
             .customerSince(UPDATED_CUSTOMER_SINCE)
             .remarks(UPDATED_REMARKS);
-        // Add required entity
-        Location location;
-        if (TestUtil.findAll(em, Location.class).isEmpty()) {
-            location = LocationResourceIT.createUpdatedEntity(em);
-            em.persist(location);
-            em.flush();
-        } else {
-            location = TestUtil.findAll(em, Location.class).get(0);
-        }
-        customer.setBillingAddress(location);
         return customer;
     }
 

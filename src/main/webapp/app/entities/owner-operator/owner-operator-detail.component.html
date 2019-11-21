@@ -65,10 +65,10 @@
                 <dd>
                     <span>{{ownerOperator.remarks}}</span>
                 </dd>
-                <dt><span jhiTranslate="jiotmsApp.ownerOperator.insurance">Insurance</span></dt>
+                <dt><span jhiTranslate="jiotmsApp.ownerOperator.operInsurance">Oper Insurance</span></dt>
                 <dd>
-                    <div *ngIf="ownerOperator.insurance">
-                        <a [routerLink]="['/insurance', ownerOperator.insurance?.id, 'view']">{{ownerOperator.insurance?.id}}</a>
+                    <div *ngIf="ownerOperator.operInsurance">
+                        <a [routerLink]="['/insurance', ownerOperator.operInsurance?.id, 'view']">{{ownerOperator.operInsurance?.id}}</a>
                     </div>
                 </dd>
             </dl>

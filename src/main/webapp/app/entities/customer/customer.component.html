@@ -51,9 +51,7 @@
             <th scope="col" ><span jhiTranslate="jiotmsApp.customer.companyLogo">Company Logo</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.customer.customerSince">Customer Since</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.customer.remarks">Remarks</span></th>
-            <th scope="col" ><span jhiTranslate="jiotmsApp.customer.billingAddress">Billing Address</span></th>
-            <th scope="col" ><span jhiTranslate="jiotmsApp.customer.insurance">Insurance</span></th>
-            <th scope="col" ><span jhiTranslate="jiotmsApp.customer.insurance">Insurance</span></th>
+            <th scope="col" ><span jhiTranslate="jiotmsApp.customer.custInsurance">Cust Insurance</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -83,18 +81,8 @@
                 <td>{{customer.customerSince | date:'mediumDate'}}</td>
                 <td>{{customer.remarks}}</td>
                 <td>
-                    <div *ngIf="customer.billingAddress">
-                        <a [routerLink]="['/location', customer.billingAddress?.id, 'view' ]" >{{customer.billingAddress?.city}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="customer.insurance">
-                        <a [routerLink]="['/insurance', customer.insurance?.id, 'view' ]" >{{customer.insurance?.providerNumber}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="customer.insurance">
-                        <a [routerLink]="['/insurance', customer.insurance?.id, 'view' ]" >{{customer.insurance?.id}}</a>
+                    <div *ngIf="customer.custInsurance">
+                        <a [routerLink]="['/insurance', customer.custInsurance?.id, 'view' ]" >{{customer.custInsurance?.providerNumber}}</a>
                     </div>
                 </td>
                 <td class="text-right">

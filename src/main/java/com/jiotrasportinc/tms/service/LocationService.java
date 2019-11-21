@@ -24,12 +24,6 @@ public interface LocationService {
      * @return the list of entities.
      */
     List<Location> findAll();
-    /**
-     * Get all the LocationDTO where Customer is {@code null}.
-     *
-     * @return the list of entities.
-     */
-    List<Location> findAllWhereCustomerIsNull();
 
 
     /**

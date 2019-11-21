@@ -93,10 +93,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jiotmsApp.ownerOperator.insurance" for="field_insurance">Insurance</label>
-                    <select class="form-control" id="field_insurance" name="insurance" formControlName="insurance">
+                    <label class="form-control-label" jhiTranslate="jiotmsApp.ownerOperator.operInsurance" for="field_operInsurance">Oper Insurance</label>
+                    <select class="form-control" id="field_operInsurance" name="operInsurance" formControlName="operInsurance">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="insuranceOption.id === editForm.get('insurance').value?.id ? editForm.get('insurance').value : insuranceOption" *ngFor="let insuranceOption of insurances; trackBy: trackInsuranceById">{{insuranceOption.id}}</option>
+                        <option [ngValue]="insuranceOption.id === editForm.get('operInsurance').value?.id ? editForm.get('operInsurance').value : insuranceOption" *ngFor="let insuranceOption of operinsurances; trackBy: trackInsuranceById">{{insuranceOption.id}}</option>
                     </select>
                 </div>
             </div>

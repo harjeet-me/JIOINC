@@ -62,20 +62,6 @@ public class LocationServiceImpl implements LocationService {
     }
 
 
-
-    /**
-    *  Get all the locations where Customer is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true) 
-    public List<Location> findAllWhereCustomerIsNull() {
-        log.debug("Request to get all locations where Customer is null");
-        return StreamSupport
-            .stream(locationRepository.findAll().spliterator(), false)
-            .filter(location -> location.getCustomer() == null)
-            .collect(Collectors.toList());
-    }
-
     /**
      * Get one location by id.
      *

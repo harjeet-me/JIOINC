@@ -119,30 +119,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jiotmsApp.customer.billingAddress" for="field_billingAddress">Billing Address</label>
-                    <select class="form-control" id="field_billingAddress" name="billingAddress" formControlName="billingAddress">
-                        <option *ngIf="!editForm.get('billingAddress').value" [ngValue]="null" selected></option>
-                        <option [ngValue]="locationOption.id === editForm.get('billingAddress').value?.id ? editForm.get('billingAddress').value : locationOption" *ngFor="let locationOption of billingaddresses; trackBy: trackLocationById">{{locationOption.city}}</option>
-                    </select>
-                </div>
-                <div *ngIf="editForm.get('billingAddress').invalid && (editForm.get('billingAddress').dirty || editForm.get('billingAddress').touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('billingAddress').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                    </small>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jiotmsApp.customer.insurance" for="field_insurance">Insurance</label>
-                    <select class="form-control" id="field_insurance" name="insurance" formControlName="insurance">
+                    <label class="form-control-label" jhiTranslate="jiotmsApp.customer.custInsurance" for="field_custInsurance">Cust Insurance</label>
+                    <select class="form-control" id="field_custInsurance" name="custInsurance" formControlName="custInsurance">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="insuranceOption.id === editForm.get('insurance').value?.id ? editForm.get('insurance').value : insuranceOption" *ngFor="let insuranceOption of insurances; trackBy: trackInsuranceById">{{insuranceOption.providerNumber}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jiotmsApp.customer.insurance" for="field_insurance">Insurance</label>
-                    <select class="form-control" id="field_insurance" name="insurance" formControlName="insurance">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="insuranceOption.id === editForm.get('insurance').value?.id ? editForm.get('insurance').value : insuranceOption" *ngFor="let insuranceOption of insurances; trackBy: trackInsuranceById">{{insuranceOption.id}}</option>
+                        <option [ngValue]="insuranceOption.id === editForm.get('custInsurance').value?.id ? editForm.get('custInsurance').value : insuranceOption" *ngFor="let insuranceOption of custinsurances; trackBy: trackInsuranceById">{{insuranceOption.providerNumber}}</option>
                     </select>
                 </div>
             </div>

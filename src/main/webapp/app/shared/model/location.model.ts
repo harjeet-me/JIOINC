@@ -1,4 +1,3 @@
-import { ICustomer } from 'app/shared/model/customer.model';
 import { CountryEnum } from 'app/shared/model/enumerations/country-enum.model';
 
 export interface ILocation {
@@ -9,7 +8,6 @@ export interface ILocation {
   stateProvince?: string;
   country?: CountryEnum;
   postalCode?: string;
-  customer?: ICustomer;
 }
 
 export class Location implements ILocation {
@@ -20,7 +18,6 @@ export class Location implements ILocation {
     public city?: string,
     public stateProvince?: string,
     public country?: CountryEnum,
-    public postalCode?: string,
-    public customer?: ICustomer
+    public postalCode?: string
   ) {}
 }

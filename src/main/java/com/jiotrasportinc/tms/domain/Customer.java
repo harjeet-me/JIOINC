@@ -4,7 +4,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
@@ -89,18 +88,9 @@ public class Customer implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
-    @OneToOne(optional = false)
-    @NotNull
-    @JoinColumn(unique = true)
-    private Location billingAddress;
-
     @OneToOne
     @JoinColumn(unique = true)
-    private Insurance insurance;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Insurance insurance;
+    private Insurance custInsurance;
 
     @OneToMany(mappedBy = "customer")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -112,7 +102,7 @@ public class Customer implements Serializable {
 
     @OneToOne(mappedBy = "customer")
     @JsonIgnore
-    private Contact contact;
+    private Contact morecontact;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -357,43 +347,17 @@ public class Customer implements Serializable {
         this.remarks = remarks;
     }
 
-    public Location getBillingAddress() {
-        return billingAddress;
+    public Insurance getCustInsurance() {
+        return custInsurance;
     }
 
-    public Customer billingAddress(Location location) {
-        this.billingAddress = location;
+    public Customer custInsurance(Insurance insurance) {
+        this.custInsurance = insurance;
         return this;
     }
 
-    public void setBillingAddress(Location location) {
-        this.billingAddress = location;
-    }
-
-    public Insurance getInsurance() {
-        return insurance;
-    }
-
-    public Customer insurance(Insurance insurance) {
-        this.insurance = insurance;
-        return this;
-    }
-
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
-    }
-
-    public Insurance getInsurance() {
-        return insurance;
-    }
-
-    public Customer insurance(Insurance insurance) {
-        this.insurance = insurance;
-        return this;
-    }
-
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
+    public void setCustInsurance(Insurance insurance) {
+        this.custInsurance = insurance;
     }
 
     public Set<LoadOrder> getLoadOrders() {
@@ -446,17 +410,17 @@ public class Customer implements Serializable {
         this.invoices = invoices;
     }
 
-    public Contact getContact() {
-        return contact;
+    public Contact getMorecontact() {
+        return morecontact;
     }
 
-    public Customer contact(Contact contact) {
-        this.contact = contact;
+    public Customer morecontact(Contact contact) {
+        this.morecontact = contact;
         return this;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setMorecontact(Contact contact) {
+        this.morecontact = contact;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

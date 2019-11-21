@@ -61,8 +61,8 @@
             <column name="remarks" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="insurance_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_owner_operator_insurance_id" />
+            <column name="oper_insurance_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_owner_operator_oper_insurance_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

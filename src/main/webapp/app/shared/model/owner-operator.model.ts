@@ -19,7 +19,7 @@ export interface IOwnerOperator {
   dot?: string;
   mc?: number;
   remarks?: string;
-  insurance?: IInsurance;
+  operInsurance?: IInsurance;
 }
 
 export class OwnerOperator implements IOwnerOperator {
@@ -40,6 +40,6 @@ export class OwnerOperator implements IOwnerOperator {
     public dot?: string,
     public mc?: number,
     public remarks?: string,
-    public insurance?: IInsurance
+    public operInsurance?: IInsurance
   ) {}
 }

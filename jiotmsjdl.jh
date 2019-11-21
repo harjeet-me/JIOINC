@@ -20,7 +20,9 @@ entity LoadOrder {
      coveredBy  COVEREDBY ,
      loadType LoadType ,
      containerSize  SizeEnum ,
-     numbersOfContainer Integer
+     numbersOfContainer Integer ,
+     comments String
+
      
 	}
     
@@ -41,7 +43,10 @@ entity Invoice {
      payRefNo String ,
      invoiceDueDate LocalDate ,
      status  InvoiceStatus ,
-     invoicePdf Blob
+
+     invoicePdf Blob ,
+     remarks String
+
 	
 }
 
@@ -77,10 +82,23 @@ entity Customer {
     country CountryEnum,
 	postalCode String ,
     dot String ,
-    mc Long
+    mc Long ,
+    companyLogo ImageBlob ,
+    customerSince LocalDate ,
+        remarks String
    
-    
+   }
+
+entity Contact {
 	
+	firstName String,
+	lastName String,
+    contactDesignation Designation ,
+	email String,
+ 	phoneNumber Long ,
+    remarks String
+    
+
 }
 
 entity Driver {
@@ -90,7 +108,13 @@ entity Driver {
 	email String,
 	phoneNumber Long,
 	licenceNumber Long,
-    dob LocalDate
+    dob LocalDate ,
+    companyJoinedOn LocalDate ,
+    companyLeftOn LocalDate 
+    image ImageBlob ,
+    licenceImage ImageBlob ,
+        remarks String
+
     
 }
 
@@ -109,6 +133,9 @@ entity OwnerOperator {
 	postalCode String ,
     dot String ,
     mc Long ,
+
+        remarks String
+
     
     
 
@@ -165,7 +192,9 @@ entity Location {
 relationship OneToOne {
    
 	Customer{billingAddress (city) required } to Location{customer (company)  } 
-    Customer{contact (designation)  } to Contact  {customer (company)  } 
+
+    Contact  {customer (company)  } to  Customer{contact (designation)  } 
+
     Customer{insurance (providerNumber)  } to Insurance  {customer (company)  } 
     Customer{insurance} to Insurance {customer(company)}
     OwnerOperator{insurance} to Insurance {OwnerOperator}
@@ -198,7 +227,9 @@ relationship OneToMany {
 
 // Set pagination options
 //paginate JobHistory, Employee with infinite-scroll
-paginate JLoadOrder with pagination
+
+paginate LoadOrder with pagination
+
 
 // Use Data Transfert Objects (DTO)
 // dto * with mapstruct

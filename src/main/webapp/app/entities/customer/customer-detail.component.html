@@ -1,0 +1,114 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="customer">
+            <h2><span jhiTranslate="jiotmsApp.customer.detail.title">Customer</span> {{customer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jiotmsApp.customer.company">Company</span></dt>
+                <dd>
+                    <span>{{customer.company}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{customer.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{customer.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.contactDesignation">Contact Designation</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'jiotmsApp.Designation.' + customer.contactDesignation}}">{{customer.contactDesignation}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.email">Email</span></dt>
+                <dd>
+                    <span>{{customer.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{customer.phoneNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.address">Address</span></dt>
+                <dd>
+                    <span>{{customer.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.streetAddress">Street Address</span></dt>
+                <dd>
+                    <span>{{customer.streetAddress}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.city">City</span></dt>
+                <dd>
+                    <span>{{customer.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.stateProvince">State Province</span></dt>
+                <dd>
+                    <span>{{customer.stateProvince}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.country">Country</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'jiotmsApp.CountryEnum.' + customer.country}}">{{customer.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.postalCode">Postal Code</span></dt>
+                <dd>
+                    <span>{{customer.postalCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.dot">Dot</span></dt>
+                <dd>
+                    <span>{{customer.dot}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.mc">Mc</span></dt>
+                <dd>
+                    <span>{{customer.mc}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.companyLogo">Company Logo</span></dt>
+                <dd>
+                    <div *ngIf="customer.companyLogo">
+                        <a (click)="openFile(customer.companyLogoContentType, customer.companyLogo)">
+                            <img [src]="'data:' + customer.companyLogoContentType + ';base64,' + customer.companyLogo" style="max-width: 100%;" alt="customer image"/>
+                        </a>
+                        {{customer.companyLogoContentType}}, {{byteSize(customer.companyLogo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.customerSince">Customer Since</span></dt>
+                <dd>
+                    <span>{{customer.customerSince}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.remarks">Remarks</span></dt>
+                <dd>
+                    <span>{{customer.remarks}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.billingAddress">Billing Address</span></dt>
+                <dd>
+                    <div *ngIf="customer.billingAddress">
+                        <a [routerLink]="['/location', customer.billingAddress?.id, 'view']">{{customer.billingAddress?.city}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.insurance">Insurance</span></dt>
+                <dd>
+                    <div *ngIf="customer.insurance">
+                        <a [routerLink]="['/insurance', customer.insurance?.id, 'view']">{{customer.insurance?.providerNumber}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.insurance">Insurance</span></dt>
+                <dd>
+                    <div *ngIf="customer.insurance">
+                        <a [routerLink]="['/insurance', customer.insurance?.id, 'view']">{{customer.insurance?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/customer', customer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="loadOrder">
+            <h2><span jhiTranslate="jiotmsApp.loadOrder.detail.title">Load Order</span> {{loadOrder.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.orderNumber">Order Number</span></dt>
+                <dd>
+                    <span>{{loadOrder.orderNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.description">Description</span></dt>
+                <dd>
+                    <span>{{loadOrder.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.shipmentNumber">Shipment Number</span></dt>
+                <dd>
+                    <span>{{loadOrder.shipmentNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.bol">Bol</span></dt>
+                <dd>
+                    <span>{{loadOrder.bol}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.pickup">Pickup</span></dt>
+                <dd>
+                    <span>{{loadOrder.pickup}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.drop">Drop</span></dt>
+                <dd>
+                    <span>{{loadOrder.drop}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.pickupLocation">Pickup Location</span></dt>
+                <dd>
+                    <span>{{loadOrder.pickupLocation}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.dropLocation">Drop Location</span></dt>
+                <dd>
+                    <span>{{loadOrder.dropLocation}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.currentLocation">Current Location</span></dt>
+                <dd>
+                    <span>{{loadOrder.currentLocation}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'jiotmsApp.StatusEnum.' + loadOrder.status}}">{{loadOrder.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.detention">Detention</span></dt>
+                <dd>
+                    <span>{{loadOrder.detention}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.chasisInTime">Chasis In Time</span></dt>
+                <dd>
+                    <span>{{loadOrder.chasisInTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.pod">Pod</span></dt>
+                <dd>
+                    <div *ngIf="loadOrder.pod">
+                        <a (click)="openFile(loadOrder.podContentType, loadOrder.pod)">
+                            <img [src]="'data:' + loadOrder.podContentType + ';base64,' + loadOrder.pod" style="max-width: 100%;" alt="loadOrder image"/>
+                        </a>
+                        {{loadOrder.podContentType}}, {{byteSize(loadOrder.pod)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.hazmat">Hazmat</span></dt>
+                <dd>
+                    <span>{{loadOrder.hazmat}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.recievedBy">Recieved By</span></dt>
+                <dd>
+                    <span>{{loadOrder.recievedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.coveredBy">Covered By</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'jiotmsApp.COVEREDBY.' + loadOrder.coveredBy}}">{{loadOrder.coveredBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.loadType">Load Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'jiotmsApp.LoadType.' + loadOrder.loadType}}">{{loadOrder.loadType}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.containerSize">Container Size</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'jiotmsApp.SizeEnum.' + loadOrder.containerSize}}">{{loadOrder.containerSize}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.numbersOfContainer">Numbers Of Container</span></dt>
+                <dd>
+                    <span>{{loadOrder.numbersOfContainer}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.comments">Comments</span></dt>
+                <dd>
+                    <span>{{loadOrder.comments}}</span>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.customer">Customer</span></dt>
+                <dd>
+                    <div *ngIf="loadOrder.customer">
+                        <a [routerLink]="['/customer', loadOrder.customer?.id, 'view']">{{loadOrder.customer?.email}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.driver">Driver</span></dt>
+                <dd>
+                    <div *ngIf="loadOrder.driver">
+                        <a [routerLink]="['/driver', loadOrder.driver?.id, 'view']">{{loadOrder.driver?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/load-order', loadOrder.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

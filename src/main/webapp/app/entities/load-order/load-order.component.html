@@ -1,0 +1,133 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jiotmsApp.loadOrder.home.title">Load Orders</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-load-order" [routerLink]="['/load-order/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="jiotmsApp.loadOrder.home.createLabel">
+            Create a new Load Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'jiotmsApp.loadOrder.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="alert alert-warning" *ngIf="loadOrders?.length === 0">
+        <span jhiTranslate="jiotmsApp.loadOrder.home.notFound">No loadOrders found</span>
+    </div>
+    <div class="table-responsive" *ngIf="loadOrders?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="orderNumber"><span jhiTranslate="jiotmsApp.loadOrder.orderNumber">Order Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="description"><span jhiTranslate="jiotmsApp.loadOrder.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="shipmentNumber"><span jhiTranslate="jiotmsApp.loadOrder.shipmentNumber">Shipment Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="bol"><span jhiTranslate="jiotmsApp.loadOrder.bol">Bol</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="pickup"><span jhiTranslate="jiotmsApp.loadOrder.pickup">Pickup</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="drop"><span jhiTranslate="jiotmsApp.loadOrder.drop">Drop</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="pickupLocation"><span jhiTranslate="jiotmsApp.loadOrder.pickupLocation">Pickup Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dropLocation"><span jhiTranslate="jiotmsApp.loadOrder.dropLocation">Drop Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="currentLocation"><span jhiTranslate="jiotmsApp.loadOrder.currentLocation">Current Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="status"><span jhiTranslate="jiotmsApp.loadOrder.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="detention"><span jhiTranslate="jiotmsApp.loadOrder.detention">Detention</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="chasisInTime"><span jhiTranslate="jiotmsApp.loadOrder.chasisInTime">Chasis In Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="pod"><span jhiTranslate="jiotmsApp.loadOrder.pod">Pod</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="hazmat"><span jhiTranslate="jiotmsApp.loadOrder.hazmat">Hazmat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="recievedBy"><span jhiTranslate="jiotmsApp.loadOrder.recievedBy">Recieved By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="coveredBy"><span jhiTranslate="jiotmsApp.loadOrder.coveredBy">Covered By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="loadType"><span jhiTranslate="jiotmsApp.loadOrder.loadType">Load Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="containerSize"><span jhiTranslate="jiotmsApp.loadOrder.containerSize">Container Size</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="numbersOfContainer"><span jhiTranslate="jiotmsApp.loadOrder.numbersOfContainer">Numbers Of Container</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="comments"><span jhiTranslate="jiotmsApp.loadOrder.comments">Comments</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="customer.email"><span jhiTranslate="jiotmsApp.loadOrder.customer">Customer</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="driver.id"><span jhiTranslate="jiotmsApp.loadOrder.driver">Driver</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let loadOrder of loadOrders ;trackBy: trackId">
+                <td><a [routerLink]="['/load-order', loadOrder.id, 'view' ]">{{loadOrder.id}}</a></td>
+                <td>{{loadOrder.orderNumber}}</td>
+                <td>{{loadOrder.description}}</td>
+                <td>{{loadOrder.shipmentNumber}}</td>
+                <td>{{loadOrder.bol}}</td>
+                <td>{{loadOrder.pickup | date:'mediumDate'}}</td>
+                <td>{{loadOrder.drop | date:'mediumDate'}}</td>
+                <td>{{loadOrder.pickupLocation}}</td>
+                <td>{{loadOrder.dropLocation}}</td>
+                <td>{{loadOrder.currentLocation}}</td>
+                <td jhiTranslate="{{'jiotmsApp.StatusEnum.' + loadOrder.status}}">{{loadOrder.status}}</td>
+                <td>{{loadOrder.detention}}</td>
+                <td>{{loadOrder.chasisInTime | date:'medium'}}</td>
+                <td>
+                    <a *ngIf="loadOrder.pod" (click)="openFile(loadOrder.podContentType, loadOrder.pod)">
+                        <img [src]="'data:' + loadOrder.podContentType + ';base64,' + loadOrder.pod" style="max-height: 30px;" alt="loadOrder image"/>
+                    </a>
+                    <span *ngIf="loadOrder.pod">{{loadOrder.podContentType}}, {{byteSize(loadOrder.pod)}}</span>
+                </td>
+                <td>{{loadOrder.hazmat}}</td>
+                <td>{{loadOrder.recievedBy}}</td>
+                <td jhiTranslate="{{'jiotmsApp.COVEREDBY.' + loadOrder.coveredBy}}">{{loadOrder.coveredBy}}</td>
+                <td jhiTranslate="{{'jiotmsApp.LoadType.' + loadOrder.loadType}}">{{loadOrder.loadType}}</td>
+                <td jhiTranslate="{{'jiotmsApp.SizeEnum.' + loadOrder.containerSize}}">{{loadOrder.containerSize}}</td>
+                <td>{{loadOrder.numbersOfContainer}}</td>
+                <td>{{loadOrder.comments}}</td>
+                <td>
+                    <div *ngIf="loadOrder.customer">
+                        <a [routerLink]="['/customer', loadOrder.customer?.id, 'view' ]" >{{loadOrder.customer?.email}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="loadOrder.driver">
+                        <a [routerLink]="['/driver', loadOrder.driver?.id, 'view' ]" >{{loadOrder.driver?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/load-order', loadOrder.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/load-order', loadOrder.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(loadOrder)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="loadOrders?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

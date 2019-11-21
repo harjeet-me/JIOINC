@@ -1,0 +1,50 @@
+{
+    "name": "Contact",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contactDesignation",
+            "fieldType": "Designation",
+            "fieldValues": "MANAGER,ACCOUNTANT,OWNER,DISPATCHER"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "contact",
+            "relationshipName": "customer",
+            "otherEntityField": "company",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191121074314",
+    "entityTableName": "contact",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

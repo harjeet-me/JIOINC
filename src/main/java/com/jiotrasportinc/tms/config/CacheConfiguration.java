@@ -44,6 +44,18 @@ public class CacheConfiguration {
             createCache(cm, com.jiotrasportinc.tms.domain.User.class.getName() + ".authorities");
             createCache(cm, com.jiotrasportinc.tms.domain.PersistentToken.class.getName());
             createCache(cm, com.jiotrasportinc.tms.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, com.jiotrasportinc.tms.domain.LoadOrder.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Invoice.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.InvoiceItem.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Insurance.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Customer.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Customer.class.getName() + ".loadOrders");
+            createCache(cm, com.jiotrasportinc.tms.domain.Customer.class.getName() + ".invoices");
+            createCache(cm, com.jiotrasportinc.tms.domain.Contact.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Driver.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Driver.class.getName() + ".loadOrders");
+            createCache(cm, com.jiotrasportinc.tms.domain.OwnerOperator.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Location.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

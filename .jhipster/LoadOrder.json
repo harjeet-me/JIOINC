@@ -1,0 +1,116 @@
+{
+    "name": "LoadOrder",
+    "fields": [
+        {
+            "fieldName": "orderNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "shipmentNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bol",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pickup",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "drop",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "pickupLocation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dropLocation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentLocation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "StatusEnum",
+            "fieldValues": "PICKEDUP,ONROAD,DELIVERED,INVOICED"
+        },
+        {
+            "fieldName": "detention",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "chasisInTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "pod",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "hazmat",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "recievedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coveredBy",
+            "fieldType": "COVEREDBY",
+            "fieldValues": "CompanyDriver,OwnerOperator"
+        },
+        {
+            "fieldName": "loadType",
+            "fieldType": "LoadType",
+            "fieldValues": "REEFER,FLATBED,LTL"
+        },
+        {
+            "fieldName": "containerSize",
+            "fieldType": "SizeEnum",
+            "fieldValues": "C53,C43,C20"
+        },
+        {
+            "fieldName": "numbersOfContainer",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "comments",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "loadOrder",
+            "relationshipName": "customer",
+            "otherEntityField": "email"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "driver",
+            "otherEntityRelationshipName": "loadOrder",
+            "relationshipName": "driver",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191121074309",
+    "entityTableName": "load_order",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

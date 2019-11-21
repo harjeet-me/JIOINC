@@ -1,0 +1,210 @@
+
+
+entity LoadOrder {
+     
+     orderNumber String,
+     description String ,
+     shipmentNumber String,
+     bol String,
+     pickup LocalDate,
+	 drop LocalDate,
+     pickupLocation String,
+	 dropLocation String,
+     currentLocation String,
+     status  StatusEnum,
+     detention Long,
+     chasisInTime Instant,    
+     pod ImageBlob,
+     hazmat Boolean,
+     recievedBy String ,
+     coveredBy  COVEREDBY ,
+     loadType LoadType ,
+     containerSize  SizeEnum ,
+     numbersOfContainer Integer
+     
+	}
+    
+    
+
+
+entity Invoice {
+     invoiceId UUID ,
+     orderNo String,
+     taxRate Double,
+     taxType TaxType,
+     currency CURRENCY ,
+     invoiceTaxTotal Double,
+     invoiceSubTotal Double,
+     invoiceTotal Double,
+     invoiceDate LocalDate ,
+     invoicePaidDate LocalDate ,
+     payRefNo String ,
+     invoiceDueDate LocalDate ,
+     status  InvoiceStatus ,
+     invoicePdf Blob
+	
+}
+
+entity InvoiceItem {
+     
+     description String,
+     qty Integer,
+     price Integer,
+     total Integer
+     
+	}
+
+entity Insurance { 
+  providerName String,
+  issueDate LocalDate ,
+  expiryDate LocalDate ,
+  policyDocument Blob ,
+  coverageStatement String 
+  }
+
+entity Customer {
+	
+    company String,
+	firstName String,
+	lastName String,
+    contactDesignation Designation ,
+	email String,
+ 	phoneNumber Long,    
+    address String,
+    streetAddress String,
+    city String,
+	stateProvince String,
+    country CountryEnum,
+	postalCode String ,
+    dot String ,
+    mc Long
+   
+    
+	
+}
+
+entity Driver {
+    company String,
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber Long,
+	licenceNumber Long,
+    dob LocalDate
+    
+}
+
+entity OwnerOperator {
+    company String,
+	firstName String,
+	lastName String,
+    contactDesignation Designation ,
+	email String,
+ 	phoneNumber Long,    
+    address String,
+    streetAddress String,
+    city String,
+	stateProvince String,
+    country CountryEnum,
+	postalCode String ,
+    dot String ,
+    mc Long ,
+    
+    
+
+}
+
+enum COVEREDBY {
+CompanyDriver , OwnerOperator   
+   }
+enum CountryEnum {
+    USA, CANADA, MEXICO
+}
+enum CURRENCY {
+USD , CAD , INR
+
+}
+enum TaxType {
+    GST, FEDRAL
+}
+enum EquipmentEnum {
+    TRAILER, CONTAINER, CHASIS
+}
+enum SizeEnum {
+   C53 , C43 , C20 
+}
+
+enum LoadType {
+    REEFER , FLATBED , LTL  
+}
+enum StatusEnum {
+    PICKEDUP, ONROAD , DELIVERED , INVOICED
+}
+
+enum InvoiceStatus {
+    DRAFT, GENERATED , SENT , PAID , OVERDRAFT , VOIDED , PARTIALLY_PAID
+}
+
+enum Designation {
+    MANAGER, ACCOUNTANT , OWNER , DISPATCHER
+}
+
+
+
+/** not an ignored comment */
+entity Location {
+	address String,
+    streetAddress String,
+    city String,
+	stateProvince String,
+    country CountryEnum,
+	postalCode String
+	
+}
+
+relationship OneToOne {
+   
+	Customer{billingAddress (city) required } to Location{customer (company)  } 
+    Customer{contact (designation)  } to Contact  {customer (company)  } 
+    Customer{insurance (providerNumber)  } to Insurance  {customer (company)  } 
+    Customer{insurance} to Insurance {customer(company)}
+    OwnerOperator{insurance} to Insurance {OwnerOperator}
+  
+}
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Customer{loadOrder(orderNuber)} to LoadOrder {customer(email)}
+    Customer{invoice} to Invoice {customer(company)}
+    Driver{loadOrder} to  LoadOrder{driver} 
+   // LoadOrder {bookingItem} to   BookingItem {mainBooking(name)} 
+    
+}
+
+//relationship ManyToMany {
+  //LoadOrder{driver} to Driver{loadOrder}
+//}
+
+
+// relationship OneToMany {
+  
+  //  BookingItem {equipment(number)}   to Equipment,
+   // BookingItem {driver(firstName)}   to  Driver{bookingItem(description)}
+	
+// }
+//relationship ManyToOne {
+//  Invoice{invoiceTo} to Customer
+// }
+
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate JLoadOrder with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

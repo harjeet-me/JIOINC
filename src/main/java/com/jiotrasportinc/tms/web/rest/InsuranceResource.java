@@ -94,10 +94,6 @@ public class InsuranceResource {
             log.debug("REST request to get all Insurances where customer is null");
             return insuranceService.findAllWhereCustomerIsNull();
         }
-        if ("customer-is-null".equals(filter)) {
-            log.debug("REST request to get all Insurances where customer is null");
-            return insuranceService.findAllWhereCustomerIsNull();
-        }
         if ("owneroperator-is-null".equals(filter)) {
             log.debug("REST request to get all Insurances where ownerOperator is null");
             return insuranceService.findAllWhereOwnerOperatorIsNull();

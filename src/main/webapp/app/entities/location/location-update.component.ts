@@ -5,11 +5,8 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
 import { ILocation, Location } from 'app/shared/model/location.model';
 import { LocationService } from './location.service';
-import { ICustomer } from 'app/shared/model/customer.model';
-import { CustomerService } from 'app/entities/customer/customer.service';
 
 @Component({
   selector: 'jhi-location-update',
@@ -17,8 +14,6 @@ import { CustomerService } from 'app/entities/customer/customer.service';
 })
 export class LocationUpdateComponent implements OnInit {
   isSaving: boolean;
-
-  customers: ICustomer[];
 
   editForm = this.fb.group({
     id: [],
@@ -30,22 +25,13 @@ export class LocationUpdateComponent implements OnInit {
     postalCode: []
   });
 
-  constructor(
-    protected jhiAlertService: JhiAlertService,
-    protected locationService: LocationService,
-    protected customerService: CustomerService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected locationService: LocationService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ location }) => {
       this.updateForm(location);
     });
-    this.customerService
-      .query()
-      .subscribe((res: HttpResponse<ICustomer[]>) => (this.customers = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(location: ILocation) {
@@ -98,12 +84,5 @@ export class LocationUpdateComponent implements OnInit {
 
   protected onSaveError() {
     this.isSaving = false;
-  }
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackCustomerById(index: number, item: ICustomer) {
-    return item.id;
   }
 }

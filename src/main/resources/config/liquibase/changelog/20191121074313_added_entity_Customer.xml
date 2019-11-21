@@ -70,14 +70,8 @@
             <column name="remarks" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="billing_address_id" type="bigint">
-                <constraints unique="true" nullable="false" uniqueConstraintName="ux_customer_billing_address_id" />
-            </column>
-            <column name="insurance_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_customer_insurance_id" />
-            </column>
-            <column name="insurance_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_customer_insurance_id" />
+            <column name="cust_insurance_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_customer_cust_insurance_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -120,7 +114,6 @@
             <column name="company_logo_content_type" type="string"/>
             <column name="customer_since" type="date"/>
             <column name="remarks" type="string"/>
-            <column name="billing_address_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

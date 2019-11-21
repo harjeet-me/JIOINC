@@ -34,12 +34,10 @@
       "companyLogo": "Company Logo",
       "customerSince": "Customer Since",
       "remarks": "Remarks",
-      "billingAddress": "Billing Address",
-      "insurance": "Insurance",
-      "insurance": "Insurance",
+      "custInsurance": "Cust Insurance",
       "loadOrder": "Load Order",
       "invoice": "Invoice",
-      "contact": "Contact"
+      "morecontact": "Morecontact"
     }
   }
 }

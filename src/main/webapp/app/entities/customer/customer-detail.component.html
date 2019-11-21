@@ -78,22 +78,10 @@
                 <dd>
                     <span>{{customer.remarks}}</span>
                 </dd>
-                <dt><span jhiTranslate="jiotmsApp.customer.billingAddress">Billing Address</span></dt>
+                <dt><span jhiTranslate="jiotmsApp.customer.custInsurance">Cust Insurance</span></dt>
                 <dd>
-                    <div *ngIf="customer.billingAddress">
-                        <a [routerLink]="['/location', customer.billingAddress?.id, 'view']">{{customer.billingAddress?.city}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="jiotmsApp.customer.insurance">Insurance</span></dt>
-                <dd>
-                    <div *ngIf="customer.insurance">
-                        <a [routerLink]="['/insurance', customer.insurance?.id, 'view']">{{customer.insurance?.providerNumber}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="jiotmsApp.customer.insurance">Insurance</span></dt>
-                <dd>
-                    <div *ngIf="customer.insurance">
-                        <a [routerLink]="['/insurance', customer.insurance?.id, 'view']">{{customer.insurance?.id}}</a>
+                    <div *ngIf="customer.custInsurance">
+                        <a [routerLink]="['/insurance', customer.custInsurance?.id, 'view']">{{customer.custInsurance?.providerNumber}}</a>
                     </div>
                 </dd>
             </dl>

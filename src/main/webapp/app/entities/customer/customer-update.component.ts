@@ -9,8 +9,6 @@ import * as moment from 'moment';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { ICustomer, Customer } from 'app/shared/model/customer.model';
 import { CustomerService } from './customer.service';
-import { ILocation } from 'app/shared/model/location.model';
-import { LocationService } from 'app/entities/location/location.service';
 import { IInsurance } from 'app/shared/model/insurance.model';
 import { InsuranceService } from 'app/entities/insurance/insurance.service';
 import { IContact } from 'app/shared/model/contact.model';
@@ -23,9 +21,7 @@ import { ContactService } from 'app/entities/contact/contact.service';
 export class CustomerUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  billingaddresses: ILocation[];
-
-  insurances: IInsurance[];
+  custinsurances: IInsurance[];
 
   contacts: IContact[];
   customerSinceDp: any;
@@ -50,16 +46,13 @@ export class CustomerUpdateComponent implements OnInit {
     companyLogoContentType: [],
     customerSince: [],
     remarks: [],
-    billingAddress: [null, Validators.required],
-    insurance: [],
-    insurance: []
+    custInsurance: []
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected customerService: CustomerService,
-    protected locationService: LocationService,
     protected insuranceService: InsuranceService,
     protected contactService: ContactService,
     protected elementRef: ElementRef,
@@ -72,30 +65,15 @@ export class CustomerUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ customer }) => {
       this.updateForm(customer);
     });
-    this.locationService.query({ filter: 'customer-is-null' }).subscribe(
-      (res: HttpResponse<ILocation[]>) => {
-        if (!this.editForm.get('billingAddress').value || !this.editForm.get('billingAddress').value.id) {
-          this.billingaddresses = res.body;
-        } else {
-          this.locationService
-            .find(this.editForm.get('billingAddress').value.id)
-            .subscribe(
-              (subRes: HttpResponse<ILocation>) => (this.billingaddresses = [subRes.body].concat(res.body)),
-              (subRes: HttpErrorResponse) => this.onError(subRes.message)
-            );
-        }
-      },
-      (res: HttpErrorResponse) => this.onError(res.message)
-    );
     this.insuranceService.query({ filter: 'customer-is-null' }).subscribe(
       (res: HttpResponse<IInsurance[]>) => {
-        if (!this.editForm.get('insurance').value || !this.editForm.get('insurance').value.id) {
-          this.insurances = res.body;
+        if (!this.editForm.get('custInsurance').value || !this.editForm.get('custInsurance').value.id) {
+          this.custinsurances = res.body;
         } else {
           this.insuranceService
-            .find(this.editForm.get('insurance').value.id)
+            .find(this.editForm.get('custInsurance').value.id)
             .subscribe(
-              (subRes: HttpResponse<IInsurance>) => (this.insurances = [subRes.body].concat(res.body)),
+              (subRes: HttpResponse<IInsurance>) => (this.custinsurances = [subRes.body].concat(res.body)),
               (subRes: HttpErrorResponse) => this.onError(subRes.message)
             );
         }
@@ -128,9 +106,7 @@ export class CustomerUpdateComponent implements OnInit {
       companyLogoContentType: customer.companyLogoContentType,
       customerSince: customer.customerSince,
       remarks: customer.remarks,
-      billingAddress: customer.billingAddress,
-      insurance: customer.insurance,
-      insurance: customer.insurance
+      custInsurance: customer.custInsurance
     });
   }
 
@@ -213,9 +189,7 @@ export class CustomerUpdateComponent implements OnInit {
       companyLogo: this.editForm.get(['companyLogo']).value,
       customerSince: this.editForm.get(['customerSince']).value,
       remarks: this.editForm.get(['remarks']).value,
-      billingAddress: this.editForm.get(['billingAddress']).value,
-      insurance: this.editForm.get(['insurance']).value,
-      insurance: this.editForm.get(['insurance']).value
+      custInsurance: this.editForm.get(['custInsurance']).value
     };
   }
 
@@ -233,10 +207,6 @@ export class CustomerUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackLocationById(index: number, item: ILocation) {
-    return item.id;
   }
 
   trackInsuranceById(index: number, item: IInsurance) {

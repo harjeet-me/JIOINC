@@ -27,21 +27,14 @@
         {
             "relationshipType": "one-to-one",
             "otherEntityName": "customer",
-            "otherEntityRelationshipName": "insurance",
-            "relationshipName": "customer",
-            "ownerSide": false
-        },
-        {
-            "relationshipType": "one-to-one",
-            "otherEntityName": "customer",
-            "otherEntityRelationshipName": "insurance",
+            "otherEntityRelationshipName": "custInsurance",
             "relationshipName": "customer",
             "ownerSide": false
         },
         {
             "relationshipType": "one-to-one",
             "otherEntityName": "ownerOperator",
-            "otherEntityRelationshipName": "insurance",
+            "otherEntityRelationshipName": "operInsurance",
             "relationshipName": "ownerOperator",
             "ownerSide": false
         }

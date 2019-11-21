@@ -69,7 +69,7 @@
             "relationshipType": "one-to-one",
             "otherEntityName": "insurance",
             "otherEntityRelationshipName": "ownerOperator",
-            "relationshipName": "insurance",
+            "relationshipName": "operInsurance",
             "otherEntityField": "id",
             "ownerSide": true
         }

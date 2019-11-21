@@ -11,7 +11,6 @@ export interface IInsurance {
   policyDocument?: any;
   coverageStatement?: string;
   customer?: ICustomer;
-  customer?: ICustomer;
   ownerOperator?: IOwnerOperator;
 }
 
@@ -24,7 +23,6 @@ export class Insurance implements IInsurance {
     public policyDocumentContentType?: string,
     public policyDocument?: any,
     public coverageStatement?: string,
-    public customer?: ICustomer,
     public customer?: ICustomer,
     public ownerOperator?: IOwnerOperator
   ) {}

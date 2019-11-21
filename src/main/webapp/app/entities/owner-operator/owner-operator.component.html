@@ -49,7 +49,7 @@
             <th scope="col" ><span jhiTranslate="jiotmsApp.ownerOperator.dot">Dot</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.ownerOperator.mc">Mc</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.ownerOperator.remarks">Remarks</span></th>
-            <th scope="col" ><span jhiTranslate="jiotmsApp.ownerOperator.insurance">Insurance</span></th>
+            <th scope="col" ><span jhiTranslate="jiotmsApp.ownerOperator.operInsurance">Oper Insurance</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -72,8 +72,8 @@
                 <td>{{ownerOperator.mc}}</td>
                 <td>{{ownerOperator.remarks}}</td>
                 <td>
-                    <div *ngIf="ownerOperator.insurance">
-                        <a [routerLink]="['/insurance', ownerOperator.insurance?.id, 'view' ]" >{{ownerOperator.insurance?.id}}</a>
+                    <div *ngIf="ownerOperator.operInsurance">
+                        <a [routerLink]="['/insurance', ownerOperator.operInsurance?.id, 'view' ]" >{{ownerOperator.operInsurance?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

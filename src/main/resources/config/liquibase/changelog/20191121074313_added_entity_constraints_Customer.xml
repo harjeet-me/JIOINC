@@ -8,21 +8,9 @@
     -->
     <changeSet id="20191121074313-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="billing_address_id"
+        <addForeignKeyConstraint baseColumnNames="cust_insurance_id"
                                  baseTableName="customer"
-                                 constraintName="fk_customer_billing_address_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="location"/>
-
-        <addForeignKeyConstraint baseColumnNames="insurance_id"
-                                 baseTableName="customer"
-                                 constraintName="fk_customer_insurance_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="insurance"/>
-
-        <addForeignKeyConstraint baseColumnNames="insurance_id"
-                                 baseTableName="customer"
-                                 constraintName="fk_customer_insurance_id"
+                                 constraintName="fk_customer_cust_insurance_id"
                                  referencedColumnNames="id"
                                  referencedTableName="insurance"/>
 

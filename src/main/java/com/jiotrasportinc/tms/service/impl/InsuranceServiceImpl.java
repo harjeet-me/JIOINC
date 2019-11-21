@@ -78,20 +78,6 @@ public class InsuranceServiceImpl implements InsuranceService {
 
 
     /**
-    *  Get all the insurances where Customer is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true) 
-    public List<Insurance> findAllWhereCustomerIsNull() {
-        log.debug("Request to get all insurances where Customer is null");
-        return StreamSupport
-            .stream(insuranceRepository.findAll().spliterator(), false)
-            .filter(insurance -> insurance.getCustomer() == null)
-            .collect(Collectors.toList());
-    }
-
-
-    /**
     *  Get all the insurances where OwnerOperator is {@code null}.
      *  @return the list of entities.
      */

@@ -1,5 +1,4 @@
 package com.jiotrasportinc.tms.domain;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -46,10 +45,6 @@ public class Location implements Serializable {
 
     @Column(name = "postal_code")
     private String postalCode;
-
-    @OneToOne(mappedBy = "billingAddress")
-    @JsonIgnore
-    private Customer customer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -136,19 +131,6 @@ public class Location implements Serializable {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public Location customer(Customer customer) {
-        this.customer = customer;
-        return this;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

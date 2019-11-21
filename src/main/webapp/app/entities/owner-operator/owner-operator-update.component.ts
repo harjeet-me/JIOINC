@@ -18,7 +18,7 @@ import { InsuranceService } from 'app/entities/insurance/insurance.service';
 export class OwnerOperatorUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  insurances: IInsurance[];
+  operinsurances: IInsurance[];
 
   editForm = this.fb.group({
     id: [],
@@ -37,7 +37,7 @@ export class OwnerOperatorUpdateComponent implements OnInit {
     dot: [],
     mc: [],
     remarks: [],
-    insurance: []
+    operInsurance: []
   });
 
   constructor(
@@ -55,13 +55,13 @@ export class OwnerOperatorUpdateComponent implements OnInit {
     });
     this.insuranceService.query({ filter: 'owneroperator-is-null' }).subscribe(
       (res: HttpResponse<IInsurance[]>) => {
-        if (!this.editForm.get('insurance').value || !this.editForm.get('insurance').value.id) {
-          this.insurances = res.body;
+        if (!this.editForm.get('operInsurance').value || !this.editForm.get('operInsurance').value.id) {
+          this.operinsurances = res.body;
         } else {
           this.insuranceService
-            .find(this.editForm.get('insurance').value.id)
+            .find(this.editForm.get('operInsurance').value.id)
             .subscribe(
-              (subRes: HttpResponse<IInsurance>) => (this.insurances = [subRes.body].concat(res.body)),
+              (subRes: HttpResponse<IInsurance>) => (this.operinsurances = [subRes.body].concat(res.body)),
               (subRes: HttpErrorResponse) => this.onError(subRes.message)
             );
         }
@@ -88,7 +88,7 @@ export class OwnerOperatorUpdateComponent implements OnInit {
       dot: ownerOperator.dot,
       mc: ownerOperator.mc,
       remarks: ownerOperator.remarks,
-      insurance: ownerOperator.insurance
+      operInsurance: ownerOperator.operInsurance
     });
   }
 
@@ -125,7 +125,7 @@ export class OwnerOperatorUpdateComponent implements OnInit {
       dot: this.editForm.get(['dot']).value,
       mc: this.editForm.get(['mc']).value,
       remarks: this.editForm.get(['remarks']).value,
-      insurance: this.editForm.get(['insurance']).value
+      operInsurance: this.editForm.get(['operInsurance']).value
     };
   }
 

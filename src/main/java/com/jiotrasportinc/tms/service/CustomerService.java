@@ -25,11 +25,11 @@ public interface CustomerService {
      */
     List<Customer> findAll();
     /**
-     * Get all the CustomerDTO where Contact is {@code null}.
+     * Get all the CustomerDTO where Morecontact is {@code null}.
      *
      * @return the list of entities.
      */
-    List<Customer> findAllWhereContactIsNull();
+    List<Customer> findAllWhereMorecontactIsNull();
 
 
     /**

@@ -44,7 +44,7 @@ export class ContactUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ contact }) => {
       this.updateForm(contact);
     });
-    this.customerService.query({ filter: 'contact-is-null' }).subscribe(
+    this.customerService.query({ filter: 'morecontact-is-null' }).subscribe(
       (res: HttpResponse<ICustomer[]>) => {
         if (!this.editForm.get('customer').value || !this.editForm.get('customer').value.id) {
           this.customers = res.body;

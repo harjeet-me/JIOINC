@@ -31,12 +31,6 @@ public interface InsuranceService {
      */
     List<Insurance> findAllWhereCustomerIsNull();
     /**
-     * Get all the InsuranceDTO where Customer is {@code null}.
-     *
-     * @return the list of entities.
-     */
-    List<Insurance> findAllWhereCustomerIsNull();
-    /**
      * Get all the InsuranceDTO where OwnerOperator is {@code null}.
      *
      * @return the list of entities.

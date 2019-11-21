@@ -1,5 +1,4 @@
 import { Moment } from 'moment';
-import { ILocation } from 'app/shared/model/location.model';
 import { IInsurance } from 'app/shared/model/insurance.model';
 import { ILoadOrder } from 'app/shared/model/load-order.model';
 import { IInvoice } from 'app/shared/model/invoice.model';
@@ -27,12 +26,10 @@ export interface ICustomer {
   companyLogo?: any;
   customerSince?: Moment;
   remarks?: string;
-  billingAddress?: ILocation;
-  insurance?: IInsurance;
-  insurance?: IInsurance;
+  custInsurance?: IInsurance;
   loadOrders?: ILoadOrder[];
   invoices?: IInvoice[];
-  contact?: IContact;
+  morecontact?: IContact;
 }
 
 export class Customer implements ICustomer {
@@ -56,11 +53,9 @@ export class Customer implements ICustomer {
     public companyLogo?: any,
     public customerSince?: Moment,
     public remarks?: string,
-    public billingAddress?: ILocation,
-    public insurance?: IInsurance,
-    public insurance?: IInsurance,
+    public custInsurance?: IInsurance,
     public loadOrders?: ILoadOrder[],
     public invoices?: IInvoice[],
-    public contact?: IContact
+    public morecontact?: IContact
   ) {}
 }

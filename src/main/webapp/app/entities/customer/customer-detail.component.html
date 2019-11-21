@@ -78,12 +78,6 @@
                 <dd>
                     <span>{{customer.remarks}}</span>
                 </dd>
-                <dt><span jhiTranslate="jiotmsApp.customer.custInsurance">Cust Insurance</span></dt>
-                <dd>
-                    <div *ngIf="customer.custInsurance">
-                        <a [routerLink]="['/insurance', customer.custInsurance?.id, 'view']">{{customer.custInsurance?.providerNumber}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

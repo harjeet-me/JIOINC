@@ -88,10 +88,6 @@ public class Customer implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Insurance custInsurance;
-
     @OneToMany(mappedBy = "customer")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<LoadOrder> loadOrders = new HashSet<>();
@@ -345,19 +341,6 @@ public class Customer implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
-    }
-
-    public Insurance getCustInsurance() {
-        return custInsurance;
-    }
-
-    public Customer custInsurance(Insurance insurance) {
-        this.custInsurance = insurance;
-        return this;
-    }
-
-    public void setCustInsurance(Insurance insurance) {
-        this.custInsurance = insurance;
     }
 
     public Set<LoadOrder> getLoadOrders() {

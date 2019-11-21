@@ -9,8 +9,6 @@ import * as moment from 'moment';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IInsurance, Insurance } from 'app/shared/model/insurance.model';
 import { InsuranceService } from './insurance.service';
-import { ICustomer } from 'app/shared/model/customer.model';
-import { CustomerService } from 'app/entities/customer/customer.service';
 import { IOwnerOperator } from 'app/shared/model/owner-operator.model';
 import { OwnerOperatorService } from 'app/entities/owner-operator/owner-operator.service';
 
@@ -20,8 +18,6 @@ import { OwnerOperatorService } from 'app/entities/owner-operator/owner-operator
 })
 export class InsuranceUpdateComponent implements OnInit {
   isSaving: boolean;
-
-  customers: ICustomer[];
 
   owneroperators: IOwnerOperator[];
   issueDateDp: any;
@@ -41,7 +37,6 @@ export class InsuranceUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected insuranceService: InsuranceService,
-    protected customerService: CustomerService,
     protected ownerOperatorService: OwnerOperatorService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -52,9 +47,6 @@ export class InsuranceUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ insurance }) => {
       this.updateForm(insurance);
     });
-    this.customerService
-      .query()
-      .subscribe((res: HttpResponse<ICustomer[]>) => (this.customers = res.body), (res: HttpErrorResponse) => this.onError(res.message));
     this.ownerOperatorService
       .query()
       .subscribe(
@@ -149,10 +141,6 @@ export class InsuranceUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackCustomerById(index: number, item: ICustomer) {
-    return item.id;
   }
 
   trackOwnerOperatorById(index: number, item: IOwnerOperator) {

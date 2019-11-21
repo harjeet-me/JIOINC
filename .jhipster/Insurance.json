@@ -26,13 +26,6 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "otherEntityName": "customer",
-            "otherEntityRelationshipName": "custInsurance",
-            "relationshipName": "customer",
-            "ownerSide": false
-        },
-        {
-            "relationshipType": "one-to-one",
             "otherEntityName": "ownerOperator",
             "otherEntityRelationshipName": "operInsurance",
             "relationshipName": "ownerOperator",

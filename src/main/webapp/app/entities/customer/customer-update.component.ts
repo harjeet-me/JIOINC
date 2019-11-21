@@ -9,8 +9,6 @@ import * as moment from 'moment';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { ICustomer, Customer } from 'app/shared/model/customer.model';
 import { CustomerService } from './customer.service';
-import { IInsurance } from 'app/shared/model/insurance.model';
-import { InsuranceService } from 'app/entities/insurance/insurance.service';
 import { IContact } from 'app/shared/model/contact.model';
 import { ContactService } from 'app/entities/contact/contact.service';
 
@@ -20,8 +18,6 @@ import { ContactService } from 'app/entities/contact/contact.service';
 })
 export class CustomerUpdateComponent implements OnInit {
   isSaving: boolean;
-
-  custinsurances: IInsurance[];
 
   contacts: IContact[];
   customerSinceDp: any;
@@ -45,15 +41,13 @@ export class CustomerUpdateComponent implements OnInit {
     companyLogo: [],
     companyLogoContentType: [],
     customerSince: [],
-    remarks: [],
-    custInsurance: []
+    remarks: []
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected customerService: CustomerService,
-    protected insuranceService: InsuranceService,
     protected contactService: ContactService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
@@ -65,21 +59,6 @@ export class CustomerUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ customer }) => {
       this.updateForm(customer);
     });
-    this.insuranceService.query({ filter: 'customer-is-null' }).subscribe(
-      (res: HttpResponse<IInsurance[]>) => {
-        if (!this.editForm.get('custInsurance').value || !this.editForm.get('custInsurance').value.id) {
-          this.custinsurances = res.body;
-        } else {
-          this.insuranceService
-            .find(this.editForm.get('custInsurance').value.id)
-            .subscribe(
-              (subRes: HttpResponse<IInsurance>) => (this.custinsurances = [subRes.body].concat(res.body)),
-              (subRes: HttpErrorResponse) => this.onError(subRes.message)
-            );
-        }
-      },
-      (res: HttpErrorResponse) => this.onError(res.message)
-    );
     this.contactService
       .query()
       .subscribe((res: HttpResponse<IContact[]>) => (this.contacts = res.body), (res: HttpErrorResponse) => this.onError(res.message));
@@ -105,8 +84,7 @@ export class CustomerUpdateComponent implements OnInit {
       companyLogo: customer.companyLogo,
       companyLogoContentType: customer.companyLogoContentType,
       customerSince: customer.customerSince,
-      remarks: customer.remarks,
-      custInsurance: customer.custInsurance
+      remarks: customer.remarks
     });
   }
 
@@ -188,8 +166,7 @@ export class CustomerUpdateComponent implements OnInit {
       companyLogoContentType: this.editForm.get(['companyLogoContentType']).value,
       companyLogo: this.editForm.get(['companyLogo']).value,
       customerSince: this.editForm.get(['customerSince']).value,
-      remarks: this.editForm.get(['remarks']).value,
-      custInsurance: this.editForm.get(['custInsurance']).value
+      remarks: this.editForm.get(['remarks']).value
     };
   }
 
@@ -207,10 +184,6 @@ export class CustomerUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackInsuranceById(index: number, item: IInsurance) {
-    return item.id;
   }
 
   trackContactById(index: number, item: IContact) {

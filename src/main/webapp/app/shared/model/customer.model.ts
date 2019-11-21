@@ -1,5 +1,4 @@
 import { Moment } from 'moment';
-import { IInsurance } from 'app/shared/model/insurance.model';
 import { ILoadOrder } from 'app/shared/model/load-order.model';
 import { IInvoice } from 'app/shared/model/invoice.model';
 import { IContact } from 'app/shared/model/contact.model';
@@ -26,7 +25,6 @@ export interface ICustomer {
   companyLogo?: any;
   customerSince?: Moment;
   remarks?: string;
-  custInsurance?: IInsurance;
   loadOrders?: ILoadOrder[];
   invoices?: IInvoice[];
   morecontact?: IContact;
@@ -53,7 +51,6 @@ export class Customer implements ICustomer {
     public companyLogo?: any,
     public customerSince?: Moment,
     public remarks?: string,
-    public custInsurance?: IInsurance,
     public loadOrders?: ILoadOrder[],
     public invoices?: IInvoice[],
     public morecontact?: IContact

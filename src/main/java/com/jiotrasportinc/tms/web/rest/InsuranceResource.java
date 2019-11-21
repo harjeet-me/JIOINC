@@ -90,10 +90,6 @@ public class InsuranceResource {
      */
     @GetMapping("/insurances")
     public List<Insurance> getAllInsurances(@RequestParam(required = false) String filter) {
-        if ("customer-is-null".equals(filter)) {
-            log.debug("REST request to get all Insurances where customer is null");
-            return insuranceService.findAllWhereCustomerIsNull();
-        }
         if ("owneroperator-is-null".equals(filter)) {
             log.debug("REST request to get all Insurances where ownerOperator is null");
             return insuranceService.findAllWhereOwnerOperatorIsNull();

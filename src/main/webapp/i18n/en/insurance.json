@@ -22,7 +22,6 @@
       "expiryDate": "Expiry Date",
       "policyDocument": "Policy Document",
       "coverageStatement": "Coverage Statement",
-      "customer": "Customer",
       "ownerOperator": "Owner Operator"
     }
   }

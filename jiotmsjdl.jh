@@ -187,7 +187,7 @@ relationship OneToOne {
    
 	// Location{customer (company)  } to Customer{billingAddress (city) }
     Contact  {customer (company)  } to  Customer{morecontact (designation)  } 
-    Customer{custInsurance (providerNumber)  } to Insurance  {customer (company)  } 
+   //  Customer{custInsurance (providerNumber)  } to Insurance  {customer (company)  } 
    
     OwnerOperator{operInsurance} to Insurance {OwnerOperator}
   

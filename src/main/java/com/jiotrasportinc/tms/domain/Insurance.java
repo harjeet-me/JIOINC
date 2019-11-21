@@ -44,10 +44,6 @@ public class Insurance implements Serializable {
     @Column(name = "coverage_statement")
     private String coverageStatement;
 
-    @OneToOne(mappedBy = "custInsurance")
-    @JsonIgnore
-    private Customer customer;
-
     @OneToOne(mappedBy = "operInsurance")
     @JsonIgnore
     private OwnerOperator ownerOperator;
@@ -137,19 +133,6 @@ public class Insurance implements Serializable {
 
     public void setCoverageStatement(String coverageStatement) {
         this.coverageStatement = coverageStatement;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public Insurance customer(Customer customer) {
-        this.customer = customer;
-        return this;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public OwnerOperator getOwnerOperator() {

@@ -1,0 +1,10 @@
+{
+  "jiotmsApp": {
+    "LoadType": {
+      "null": "",
+      "REEFER": "REEFER",
+      "FLATBED": "FLATBED",
+      "LTL": "LTL"
+    }
+  }
+}

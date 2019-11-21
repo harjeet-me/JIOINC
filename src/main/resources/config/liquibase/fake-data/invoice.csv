@@ -1,0 +1,11 @@
+id;invoice_id;order_no;tax_rate;tax_type;currency;invoice_tax_total;invoice_sub_total;invoice_total;invoice_date;invoice_paid_date;pay_ref_no;invoice_due_date;status;invoice_pdf;invoice_pdf_content_type;remarks
+1;6254c95d-e8d3-46ac-bc31-6e887d654e16;Industrial;90538;FEDRAL;CAD;9170;29321;60244;2019-11-20;2019-11-20;ivory Data neural;2019-11-21;PARTIALLY_PAID;../fake-data/blob/hipster.png;image/png;Designer
+2;07be85b1-f2bc-4d9d-9d16-b316deb21813;Maine PCI SAS;23668;FEDRAL;CAD;55840;70508;42422;2019-11-21;2019-11-20;Cotton;2019-11-20;PAID;../fake-data/blob/hipster.png;image/png;Handmade Wooden Cheese Fresh
+3;abba93f6-5741-4d83-afc0-ff805e08efe1;Paraguay;96930;FEDRAL;CAD;99583;62755;69692;2019-11-20;2019-11-20;protocol Product Usability;2019-11-21;GENERATED;../fake-data/blob/hipster.png;image/png;withdrawal
+4;6539415f-4f7b-4084-86d9-a422e1dff6b9;District Unbranded;87666;FEDRAL;INR;38089;39298;96991;2019-11-20;2019-11-20;bypassing Bypass;2019-11-20;DRAFT;../fake-data/blob/hipster.png;image/png;SMS
+5;d8fbfe89-cbfc-4d63-b732-4f4933eac905;Steel;67157;FEDRAL;CAD;96797;56093;8840;2019-11-20;2019-11-20;Connecticut Burg;2019-11-20;PARTIALLY_PAID;../fake-data/blob/hipster.png;image/png;Checking Account
+6;f599a686-1eb5-4887-8e64-98dbfc27ed7c;Practical Steel Chips;62080;FEDRAL;CAD;12887;46011;12804;2019-11-20;2019-11-21;Metal deposit;2019-11-21;OVERDRAFT;../fake-data/blob/hipster.png;image/png;Soap teal Licensed Wooden Pants
+7;45201818-753e-4528-9b50-1c7ab18d2e60;systemic;80620;GST;CAD;75995;36891;53126;2019-11-20;2019-11-20;Small Wooden Ball Metal Bond Markets Units European Composite Unit (EURCO);2019-11-20;PARTIALLY_PAID;../fake-data/blob/hipster.png;image/png;back-end enhance
+8;14b62095-d315-4813-a597-a5ca77198b98;Michigan Connecticut empower;33744;GST;INR;23722;753;10178;2019-11-21;2019-11-21;Multi-tiered Pizza;2019-11-21;GENERATED;../fake-data/blob/hipster.png;image/png;Internal
+9;10806bff-1e69-4fed-8df4-72badeb88974;override silver orchestration;42543;GST;USD;8729;58123;50610;2019-11-21;2019-11-20;internet solution Checking Account;2019-11-20;PAID;../fake-data/blob/hipster.png;image/png;orange Trinidad and Tobago Dollar Gorgeous
+10;2a0c1977-96c5-41ed-9bf6-1ebff3261ebb;Refined Soft Keyboard synthesizing;75050;FEDRAL;USD;66519;63375;52306;2019-11-20;2019-11-20;HDD;2019-11-20;PAID;../fake-data/blob/hipster.png;image/png;intranet index

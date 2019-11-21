@@ -22,6 +22,7 @@ entity LoadOrder {
      containerSize  SizeEnum ,
      numbersOfContainer Integer ,
      comments String
+
      
 	}
     
@@ -42,8 +43,10 @@ entity Invoice {
      payRefNo String ,
      invoiceDueDate LocalDate ,
      status  InvoiceStatus ,
+
      invoicePdf Blob ,
      remarks String
+
 	
 }
 
@@ -71,7 +74,6 @@ entity Customer {
 	lastName String,
     contactDesignation Designation ,
 	email String,
-    
  	phoneNumber Long,    
     address String,
     streetAddress String,
@@ -96,6 +98,7 @@ entity Contact {
  	phoneNumber Long ,
     remarks String
     
+
 }
 
 entity Driver {
@@ -111,6 +114,7 @@ entity Driver {
     image ImageBlob ,
     licenceImage ImageBlob ,
         remarks String
+
     
 }
 
@@ -129,7 +133,9 @@ entity OwnerOperator {
 	postalCode String ,
     dot String ,
     mc Long ,
+
         remarks String
+
     
     
 
@@ -186,7 +192,9 @@ entity Location {
 relationship OneToOne {
    
 	Customer{billingAddress (city) required } to Location{customer (company)  } 
+
     Contact  {customer (company)  } to  Customer{contact (designation)  } 
+
     Customer{insurance (providerNumber)  } to Insurance  {customer (company)  } 
     Customer{insurance} to Insurance {customer(company)}
     OwnerOperator{insurance} to Insurance {OwnerOperator}
@@ -219,7 +227,9 @@ relationship OneToMany {
 
 // Set pagination options
 //paginate JobHistory, Employee with infinite-scroll
+
 paginate LoadOrder with pagination
+
 
 // Use Data Transfert Objects (DTO)
 // dto * with mapstruct

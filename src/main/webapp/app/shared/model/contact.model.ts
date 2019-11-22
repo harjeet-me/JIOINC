@@ -9,7 +9,7 @@ export interface IContact {
   email?: string;
   phoneNumber?: number;
   remarks?: string;
-  customer?: ICustomer;
+  customers?: ICustomer[];
 }
 
 export class Contact implements IContact {
@@ -21,6 +21,6 @@ export class Contact implements IContact {
     public email?: string,
     public phoneNumber?: number,
     public remarks?: string,
-    public customer?: ICustomer
+    public customers?: ICustomer[]
   ) {}
 }

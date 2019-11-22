@@ -29,12 +29,6 @@
                 <dd>
                     <span>{{contact.remarks}}</span>
                 </dd>
-                <dt><span jhiTranslate="jiotmsApp.contact.customer">Customer</span></dt>
-                <dd>
-                    <div *ngIf="contact.customer">
-                        <a [routerLink]="['/customer', contact.customer?.id, 'view']">{{contact.customer?.company}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

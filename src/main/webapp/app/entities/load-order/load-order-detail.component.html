@@ -64,7 +64,7 @@
                 </dd>
                 <dt><span jhiTranslate="jiotmsApp.loadOrder.hazmat">Hazmat</span></dt>
                 <dd>
-                    <span>{{loadOrder.hazmat}}</span>
+                    <span jhiTranslate="{{'jiotmsApp.HAZMAT.' + loadOrder.hazmat}}">{{loadOrder.hazmat}}</span>
                 </dd>
                 <dt><span jhiTranslate="jiotmsApp.loadOrder.recievedBy">Recieved By</span></dt>
                 <dd>
@@ -100,6 +100,12 @@
                 <dd>
                     <div *ngIf="loadOrder.driver">
                         <a [routerLink]="['/driver', loadOrder.driver?.id, 'view']">{{loadOrder.driver?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.loadOrder.ownerOperator">Owner Operator</span></dt>
+                <dd>
+                    <div *ngIf="loadOrder.ownerOperator">
+                        <a [routerLink]="['/owner-operator', loadOrder.ownerOperator?.id, 'view']">{{loadOrder.ownerOperator?.id}}</a>
                     </div>
                 </dd>
             </dl>

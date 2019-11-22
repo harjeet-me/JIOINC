@@ -40,7 +40,6 @@
             <th scope="col" ><span jhiTranslate="jiotmsApp.contact.email">Email</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.contact.phoneNumber">Phone Number</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.contact.remarks">Remarks</span></th>
-            <th scope="col" ><span jhiTranslate="jiotmsApp.contact.customer">Customer</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -53,11 +52,6 @@
                 <td>{{contact.email}}</td>
                 <td>{{contact.phoneNumber}}</td>
                 <td>{{contact.remarks}}</td>
-                <td>
-                    <div *ngIf="contact.customer">
-                        <a [routerLink]="['/customer', contact.customer?.id, 'view' ]" >{{contact.customer?.company}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

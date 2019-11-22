@@ -72,6 +72,12 @@
             "relationshipName": "operInsurance",
             "otherEntityField": "id",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "loadOrder",
+            "otherEntityRelationshipName": "ownerOperator",
+            "relationshipName": "loadOrder"
         }
     ],
     "changelogDate": "20191121074316",

@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.jiotrasportinc.tms.domain.enumeration.Designation;
 
@@ -77,6 +79,10 @@ public class OwnerOperator implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Insurance operInsurance;
+
+    @OneToMany(mappedBy = "ownerOperator")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<LoadOrder> loadOrders = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -293,6 +299,31 @@ public class OwnerOperator implements Serializable {
 
     public void setOperInsurance(Insurance insurance) {
         this.operInsurance = insurance;
+    }
+
+    public Set<LoadOrder> getLoadOrders() {
+        return loadOrders;
+    }
+
+    public OwnerOperator loadOrders(Set<LoadOrder> loadOrders) {
+        this.loadOrders = loadOrders;
+        return this;
+    }
+
+    public OwnerOperator addLoadOrder(LoadOrder loadOrder) {
+        this.loadOrders.add(loadOrder);
+        loadOrder.setOwnerOperator(this);
+        return this;
+    }
+
+    public OwnerOperator removeLoadOrder(LoadOrder loadOrder) {
+        this.loadOrders.remove(loadOrder);
+        loadOrder.setOwnerOperator(null);
+        return this;
+    }
+
+    public void setLoadOrders(Set<LoadOrder> loadOrders) {
+        this.loadOrders = loadOrders;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -70,6 +70,15 @@
             <column name="remarks" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="contract" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="contract_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="morecontact_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -111,6 +120,8 @@
             <column name="company_logo_content_type" type="string"/>
             <column name="customer_since" type="date"/>
             <column name="remarks" type="string"/>
+            <column name="contract" type="blob"/>
+            <column name="contract_content_type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

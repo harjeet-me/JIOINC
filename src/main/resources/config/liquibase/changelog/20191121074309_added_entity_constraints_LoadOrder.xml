@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="driver"/>
 
+        <addForeignKeyConstraint baseColumnNames="owner_operator_id"
+                                 baseTableName="load_order"
+                                 constraintName="fk_load_order_owner_operator_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="owner_operator"/>
+
     </changeSet>
 </databaseChangeLog>

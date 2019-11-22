@@ -6,6 +6,7 @@ import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/shared/constants/input.consta
 import { LoadOrderService } from 'app/entities/load-order/load-order.service';
 import { ILoadOrder, LoadOrder } from 'app/shared/model/load-order.model';
 import { StatusEnum } from 'app/shared/model/enumerations/status-enum.model';
+import { HAZMAT } from 'app/shared/model/enumerations/hazmat.model';
 import { COVEREDBY } from 'app/shared/model/enumerations/coveredby.model';
 import { LoadType } from 'app/shared/model/enumerations/load-type.model';
 import { SizeEnum } from 'app/shared/model/enumerations/size-enum.model';
@@ -44,7 +45,7 @@ describe('Service Tests', () => {
         currentDate,
         'image/png',
         'AAAAAAA',
-        false,
+        HAZMAT.YES,
         'AAAAAAA',
         COVEREDBY.CompanyDriver,
         LoadType.REEFER,
@@ -117,7 +118,7 @@ describe('Service Tests', () => {
             detention: 1,
             chasisInTime: currentDate.format(DATE_TIME_FORMAT),
             pod: 'BBBBBB',
-            hazmat: true,
+            hazmat: 'BBBBBB',
             recievedBy: 'BBBBBB',
             coveredBy: 'BBBBBB',
             loadType: 'BBBBBB',
@@ -161,7 +162,7 @@ describe('Service Tests', () => {
             detention: 1,
             chasisInTime: currentDate.format(DATE_TIME_FORMAT),
             pod: 'BBBBBB',
-            hazmat: true,
+            hazmat: 'BBBBBB',
             recievedBy: 'BBBBBB',
             coveredBy: 'BBBBBB',
             loadType: 'BBBBBB',

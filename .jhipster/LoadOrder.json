@@ -57,7 +57,8 @@
         },
         {
             "fieldName": "hazmat",
-            "fieldType": "Boolean"
+            "fieldType": "HAZMAT",
+            "fieldValues": "YES,NO"
         },
         {
             "fieldName": "recievedBy",
@@ -100,6 +101,13 @@
             "otherEntityName": "driver",
             "otherEntityRelationshipName": "loadOrder",
             "relationshipName": "driver",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "ownerOperator",
+            "otherEntityRelationshipName": "loadOrder",
+            "relationshipName": "ownerOperator",
             "otherEntityField": "id"
         }
     ],

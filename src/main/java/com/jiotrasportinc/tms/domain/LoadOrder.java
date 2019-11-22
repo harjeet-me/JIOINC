@@ -12,6 +12,8 @@ import java.time.LocalDate;
 
 import com.jiotrasportinc.tms.domain.enumeration.StatusEnum;
 
+import com.jiotrasportinc.tms.domain.enumeration.HAZMAT;
+
 import com.jiotrasportinc.tms.domain.enumeration.COVEREDBY;
 
 import com.jiotrasportinc.tms.domain.enumeration.LoadType;
@@ -78,8 +80,9 @@ public class LoadOrder implements Serializable {
     @Column(name = "pod_content_type")
     private String podContentType;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "hazmat")
-    private Boolean hazmat;
+    private HAZMAT hazmat;
 
     @Column(name = "recieved_by")
     private String recievedBy;
@@ -109,6 +112,10 @@ public class LoadOrder implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("loadOrders")
     private Driver driver;
+
+    @ManyToOne
+    @JsonIgnoreProperties("loadOrders")
+    private OwnerOperator ownerOperator;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -301,16 +308,16 @@ public class LoadOrder implements Serializable {
         this.podContentType = podContentType;
     }
 
-    public Boolean isHazmat() {
+    public HAZMAT getHazmat() {
         return hazmat;
     }
 
-    public LoadOrder hazmat(Boolean hazmat) {
+    public LoadOrder hazmat(HAZMAT hazmat) {
         this.hazmat = hazmat;
         return this;
     }
 
-    public void setHazmat(Boolean hazmat) {
+    public void setHazmat(HAZMAT hazmat) {
         this.hazmat = hazmat;
     }
 
@@ -417,6 +424,19 @@ public class LoadOrder implements Serializable {
     public void setDriver(Driver driver) {
         this.driver = driver;
     }
+
+    public OwnerOperator getOwnerOperator() {
+        return ownerOperator;
+    }
+
+    public LoadOrder ownerOperator(OwnerOperator ownerOperator) {
+        this.ownerOperator = ownerOperator;
+        return this;
+    }
+
+    public void setOwnerOperator(OwnerOperator ownerOperator) {
+        this.ownerOperator = ownerOperator;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -453,7 +473,7 @@ public class LoadOrder implements Serializable {
             ", chasisInTime='" + getChasisInTime() + "'" +
             ", pod='" + getPod() + "'" +
             ", podContentType='" + getPodContentType() + "'" +
-            ", hazmat='" + isHazmat() + "'" +
+            ", hazmat='" + getHazmat() + "'" +
             ", recievedBy='" + getRecievedBy() + "'" +
             ", coveredBy='" + getCoveredBy() + "'" +
             ", loadType='" + getLoadType() + "'" +

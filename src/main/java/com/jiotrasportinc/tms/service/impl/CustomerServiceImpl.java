@@ -62,20 +62,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-
-    /**
-    *  Get all the customers where Morecontact is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true) 
-    public List<Customer> findAllWhereMorecontactIsNull() {
-        log.debug("Request to get all customers where Morecontact is null");
-        return StreamSupport
-            .stream(customerRepository.findAll().spliterator(), false)
-            .filter(customer -> customer.getMorecontact() == null)
-            .collect(Collectors.toList());
-    }
-
     /**
      * Get one customer by id.
      *

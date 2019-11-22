@@ -78,6 +78,19 @@
                 <dd>
                     <span>{{customer.remarks}}</span>
                 </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.contract">Contract</span></dt>
+                <dd>
+                    <div *ngIf="customer.contract">
+                        <a (click)="openFile(customer.contractContentType, customer.contract)" jhiTranslate="entity.action.open">open</a>
+                        {{customer.contractContentType}}, {{byteSize(customer.contract)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jiotmsApp.customer.morecontact">Morecontact</span></dt>
+                <dd>
+                    <div *ngIf="customer.morecontact">
+                        <a [routerLink]="['/contact', customer.morecontact?.id, 'view']">{{customer.morecontact?.designation}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

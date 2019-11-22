@@ -1,4 +1,5 @@
 import { IInsurance } from 'app/shared/model/insurance.model';
+import { ILoadOrder } from 'app/shared/model/load-order.model';
 import { Designation } from 'app/shared/model/enumerations/designation.model';
 import { CountryEnum } from 'app/shared/model/enumerations/country-enum.model';
 
@@ -20,6 +21,7 @@ export interface IOwnerOperator {
   mc?: number;
   remarks?: string;
   operInsurance?: IInsurance;
+  loadOrders?: ILoadOrder[];
 }
 
 export class OwnerOperator implements IOwnerOperator {
@@ -40,6 +42,7 @@ export class OwnerOperator implements IOwnerOperator {
     public dot?: string,
     public mc?: number,
     public remarks?: string,
-    public operInsurance?: IInsurance
+    public operInsurance?: IInsurance,
+    public loadOrders?: ILoadOrder[]
   ) {}
 }

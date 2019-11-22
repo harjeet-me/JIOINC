@@ -1,7 +1,6 @@
 
 
-entity LoadOrder {
-     
+entity LoadOrder {     
      orderNumber String,
      description String ,
      shipmentNumber String,
@@ -15,7 +14,7 @@ entity LoadOrder {
      detention Long,
      chasisInTime Instant,    
      pod ImageBlob,
-     hazmat Boolean,
+     hazmat HAZMAT,
      recievedBy String ,
      coveredBy  COVEREDBY ,
      loadType LoadType ,
@@ -26,7 +25,9 @@ entity LoadOrder {
 	}
     
     
-
+enum HAZMAT {
+YES ,  NO
+}
 
 entity Invoice {
      invoiceId UUID ,
@@ -70,8 +71,7 @@ entity Customer {
 	firstName String,
 	lastName String,
     contactDesignation Designation ,
-	email String,
-    
+	email String,    
  	phoneNumber Long,    
     address String,
     streetAddress String,
@@ -83,7 +83,8 @@ entity Customer {
     mc Long ,
     companyLogo ImageBlob ,
     customerSince LocalDate ,
-        remarks String
+    remarks String,
+    contract Blob
    
    }
 
@@ -186,7 +187,7 @@ entity Location {
 relationship OneToOne {
    
 	// Location{customer (company)  } to Customer{billingAddress (city) }
-    Contact  {customer (company)  } to  Customer{morecontact (designation)  } 
+    
    //  Customer{custInsurance (providerNumber)  } to Insurance  {customer (company)  } 
    
     OwnerOperator{operInsurance} to Insurance {OwnerOperator}
@@ -194,13 +195,19 @@ relationship OneToOne {
 }
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
+   
 	Customer{loadOrder(orderNuber)} to LoadOrder {customer(email)}
     Customer{invoice} to Invoice {customer(company)}
     Driver{loadOrder} to  LoadOrder{driver} 
-   // LoadOrder {bookingItem} to   BookingItem {mainBooking(name)} 
+    
+      OwnerOperator { loadOrder} to  LoadOrder {ownerOperator}  
+     Contact  {customer (company)  } to  Customer{morecontact (designation)  }
+    
     
 }
+//relationship ManyToOne {
 
+// }
 //relationship ManyToMany {
   //LoadOrder{driver} to Driver{loadOrder}
 //}

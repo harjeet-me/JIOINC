@@ -101,8 +101,10 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jiotmsApp.loadOrder.hazmat" for="field_hazmat">Hazmat</label>
-                    <input type="checkbox" class="form-control" name="hazmat" id="field_hazmat"
-                           formControlName="hazmat"/>
+                    <select class="form-control" name="hazmat" formControlName="hazmat" id="field_hazmat">
+                        <option value="YES">{{'jiotmsApp.HAZMAT.YES' | translate}}</option>
+                        <option value="NO">{{'jiotmsApp.HAZMAT.NO' | translate}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jiotmsApp.loadOrder.recievedBy" for="field_recievedBy">Recieved By</label>
@@ -155,6 +157,13 @@
                     <select class="form-control" id="field_driver" name="driver" formControlName="driver">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="driverOption.id === editForm.get('driver').value?.id ? editForm.get('driver').value : driverOption" *ngFor="let driverOption of drivers; trackBy: trackDriverById">{{driverOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jiotmsApp.loadOrder.ownerOperator" for="field_ownerOperator">Owner Operator</label>
+                    <select class="form-control" id="field_ownerOperator" name="ownerOperator" formControlName="ownerOperator">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ownerOperatorOption.id === editForm.get('ownerOperator').value?.id ? editForm.get('ownerOperator').value : ownerOperatorOption" *ngFor="let ownerOperatorOption of owneroperators; trackBy: trackOwnerOperatorById">{{ownerOperatorOption.id}}</option>
                     </select>
                 </div>
             </div>

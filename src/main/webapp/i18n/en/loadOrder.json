@@ -38,7 +38,8 @@
       "numbersOfContainer": "Numbers Of Container",
       "comments": "Comments",
       "customer": "Customer",
-      "driver": "Driver"
+      "driver": "Driver",
+      "ownerOperator": "Owner Operator"
     }
   }
 }

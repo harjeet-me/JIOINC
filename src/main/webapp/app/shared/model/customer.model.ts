@@ -25,6 +25,8 @@ export interface ICustomer {
   companyLogo?: any;
   customerSince?: Moment;
   remarks?: string;
+  contractContentType?: string;
+  contract?: any;
   loadOrders?: ILoadOrder[];
   invoices?: IInvoice[];
   morecontact?: IContact;
@@ -51,6 +53,8 @@ export class Customer implements ICustomer {
     public companyLogo?: any,
     public customerSince?: Moment,
     public remarks?: string,
+    public contractContentType?: string,
+    public contract?: any,
     public loadOrders?: ILoadOrder[],
     public invoices?: IInvoice[],
     public morecontact?: IContact

@@ -51,6 +51,8 @@
             <th scope="col" ><span jhiTranslate="jiotmsApp.customer.companyLogo">Company Logo</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.customer.customerSince">Customer Since</span></th>
             <th scope="col" ><span jhiTranslate="jiotmsApp.customer.remarks">Remarks</span></th>
+            <th scope="col" ><span jhiTranslate="jiotmsApp.customer.contract">Contract</span></th>
+            <th scope="col" ><span jhiTranslate="jiotmsApp.customer.morecontact">Morecontact</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -79,6 +81,15 @@
                 </td>
                 <td>{{customer.customerSince | date:'mediumDate'}}</td>
                 <td>{{customer.remarks}}</td>
+                <td>
+                    <a *ngIf="customer.contract" (click)="openFile(customer.contractContentType, customer.contract)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="customer.contract">{{customer.contractContentType}}, {{byteSize(customer.contract)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="customer.morecontact">
+                        <a [routerLink]="['/contact', customer.morecontact?.id, 'view' ]" >{{customer.morecontact?.designation}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

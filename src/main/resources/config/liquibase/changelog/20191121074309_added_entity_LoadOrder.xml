@@ -58,7 +58,7 @@
             <column name="pod_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="hazmat" type="boolean">
+            <column name="hazmat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="recieved_by" type="varchar(255)">
@@ -83,6 +83,9 @@
                 <constraints nullable="true" />
             </column>
             <column name="driver_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="owner_operator_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -123,7 +126,7 @@
             <column name="chasis_in_time" type="datetime"/>
             <column name="pod" type="blob"/>
             <column name="pod_content_type" type="string"/>
-            <column name="hazmat" type="boolean"/>
+            <column name="hazmat" type="string"/>
             <column name="recieved_by" type="string"/>
             <column name="covered_by" type="string"/>
             <column name="load_type" type="string"/>

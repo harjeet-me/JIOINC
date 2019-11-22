@@ -1,7 +1,9 @@
 import { Moment } from 'moment';
 import { ICustomer } from 'app/shared/model/customer.model';
 import { IDriver } from 'app/shared/model/driver.model';
+import { IOwnerOperator } from 'app/shared/model/owner-operator.model';
 import { StatusEnum } from 'app/shared/model/enumerations/status-enum.model';
+import { HAZMAT } from 'app/shared/model/enumerations/hazmat.model';
 import { COVEREDBY } from 'app/shared/model/enumerations/coveredby.model';
 import { LoadType } from 'app/shared/model/enumerations/load-type.model';
 import { SizeEnum } from 'app/shared/model/enumerations/size-enum.model';
@@ -22,7 +24,7 @@ export interface ILoadOrder {
   chasisInTime?: Moment;
   podContentType?: string;
   pod?: any;
-  hazmat?: boolean;
+  hazmat?: HAZMAT;
   recievedBy?: string;
   coveredBy?: COVEREDBY;
   loadType?: LoadType;
@@ -31,6 +33,7 @@ export interface ILoadOrder {
   comments?: string;
   customer?: ICustomer;
   driver?: IDriver;
+  ownerOperator?: IOwnerOperator;
 }
 
 export class LoadOrder implements ILoadOrder {
@@ -50,7 +53,7 @@ export class LoadOrder implements ILoadOrder {
     public chasisInTime?: Moment,
     public podContentType?: string,
     public pod?: any,
-    public hazmat?: boolean,
+    public hazmat?: HAZMAT,
     public recievedBy?: string,
     public coveredBy?: COVEREDBY,
     public loadType?: LoadType,
@@ -58,8 +61,7 @@ export class LoadOrder implements ILoadOrder {
     public numbersOfContainer?: number,
     public comments?: string,
     public customer?: ICustomer,
-    public driver?: IDriver
-  ) {
-    this.hazmat = this.hazmat || false;
-  }
+    public driver?: IDriver,
+    public ownerOperator?: IOwnerOperator
+  ) {}
 }

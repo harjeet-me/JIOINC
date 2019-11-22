@@ -24,12 +24,6 @@ public interface CustomerService {
      * @return the list of entities.
      */
     List<Customer> findAll();
-    /**
-     * Get all the CustomerDTO where Morecontact is {@code null}.
-     *
-     * @return the list of entities.
-     */
-    List<Customer> findAllWhereMorecontactIsNull();
 
 
     /**

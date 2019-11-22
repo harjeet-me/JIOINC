@@ -41,7 +41,10 @@ export class CustomerUpdateComponent implements OnInit {
     companyLogo: [],
     companyLogoContentType: [],
     customerSince: [],
-    remarks: []
+    remarks: [],
+    contract: [],
+    contractContentType: [],
+    morecontact: []
   });
 
   constructor(
@@ -84,7 +87,10 @@ export class CustomerUpdateComponent implements OnInit {
       companyLogo: customer.companyLogo,
       companyLogoContentType: customer.companyLogoContentType,
       customerSince: customer.customerSince,
-      remarks: customer.remarks
+      remarks: customer.remarks,
+      contract: customer.contract,
+      contractContentType: customer.contractContentType,
+      morecontact: customer.morecontact
     });
   }
 
@@ -166,7 +172,10 @@ export class CustomerUpdateComponent implements OnInit {
       companyLogoContentType: this.editForm.get(['companyLogoContentType']).value,
       companyLogo: this.editForm.get(['companyLogo']).value,
       customerSince: this.editForm.get(['customerSince']).value,
-      remarks: this.editForm.get(['remarks']).value
+      remarks: this.editForm.get(['remarks']).value,
+      contractContentType: this.editForm.get(['contractContentType']).value,
+      contract: this.editForm.get(['contract']).value,
+      morecontact: this.editForm.get(['morecontact']).value
     };
   }
 

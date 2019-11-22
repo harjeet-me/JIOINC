@@ -1,5 +1,5 @@
 package com.jiotrasportinc.tms.domain;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -88,6 +88,13 @@ public class Customer implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
+    @Lob
+    @Column(name = "contract")
+    private byte[] contract;
+
+    @Column(name = "contract_content_type")
+    private String contractContentType;
+
     @OneToMany(mappedBy = "customer")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<LoadOrder> loadOrders = new HashSet<>();
@@ -96,8 +103,8 @@ public class Customer implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Invoice> invoices = new HashSet<>();
 
-    @OneToOne(mappedBy = "customer")
-    @JsonIgnore
+    @ManyToOne
+    @JsonIgnoreProperties("customers")
     private Contact morecontact;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -343,6 +350,32 @@ public class Customer implements Serializable {
         this.remarks = remarks;
     }
 
+    public byte[] getContract() {
+        return contract;
+    }
+
+    public Customer contract(byte[] contract) {
+        this.contract = contract;
+        return this;
+    }
+
+    public void setContract(byte[] contract) {
+        this.contract = contract;
+    }
+
+    public String getContractContentType() {
+        return contractContentType;
+    }
+
+    public Customer contractContentType(String contractContentType) {
+        this.contractContentType = contractContentType;
+        return this;
+    }
+
+    public void setContractContentType(String contractContentType) {
+        this.contractContentType = contractContentType;
+    }
+
     public Set<LoadOrder> getLoadOrders() {
         return loadOrders;
     }
@@ -445,6 +478,8 @@ public class Customer implements Serializable {
             ", companyLogoContentType='" + getCompanyLogoContentType() + "'" +
             ", customerSince='" + getCustomerSince() + "'" +
             ", remarks='" + getRemarks() + "'" +
+            ", contract='" + getContract() + "'" +
+            ", contractContentType='" + getContractContentType() + "'" +
             "}";
     }
 }

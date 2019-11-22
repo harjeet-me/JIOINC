@@ -85,15 +85,10 @@ public class CustomerResource {
      * {@code GET  /customers} : get all the customers.
      *
 
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of customers in body.
      */
     @GetMapping("/customers")
-    public List<Customer> getAllCustomers(@RequestParam(required = false) String filter) {
-        if ("morecontact-is-null".equals(filter)) {
-            log.debug("REST request to get all Customers where morecontact is null");
-            return customerService.findAllWhereMorecontactIsNull();
-        }
+    public List<Customer> getAllCustomers() {
         log.debug("REST request to get all Customers");
         return customerService.findAll();
     }

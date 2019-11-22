@@ -45,6 +45,8 @@ describe('Service Tests', () => {
         'image/png',
         'AAAAAAA',
         currentDate,
+        'AAAAAAA',
+        'image/png',
         'AAAAAAA'
       );
     });
@@ -109,7 +111,8 @@ describe('Service Tests', () => {
             mc: 1,
             companyLogo: 'BBBBBB',
             customerSince: currentDate.format(DATE_FORMAT),
-            remarks: 'BBBBBB'
+            remarks: 'BBBBBB',
+            contract: 'BBBBBB'
           },
           elemDefault
         );
@@ -148,7 +151,8 @@ describe('Service Tests', () => {
             mc: 1,
             companyLogo: 'BBBBBB',
             customerSince: currentDate.format(DATE_FORMAT),
-            remarks: 'BBBBBB'
+            remarks: 'BBBBBB',
+            contract: 'BBBBBB'
           },
           elemDefault
         );

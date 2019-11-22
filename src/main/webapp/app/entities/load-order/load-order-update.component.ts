@@ -14,6 +14,8 @@ import { ICustomer } from 'app/shared/model/customer.model';
 import { CustomerService } from 'app/entities/customer/customer.service';
 import { IDriver } from 'app/shared/model/driver.model';
 import { DriverService } from 'app/entities/driver/driver.service';
+import { IOwnerOperator } from 'app/shared/model/owner-operator.model';
+import { OwnerOperatorService } from 'app/entities/owner-operator/owner-operator.service';
 
 @Component({
   selector: 'jhi-load-order-update',
@@ -25,6 +27,8 @@ export class LoadOrderUpdateComponent implements OnInit {
   customers: ICustomer[];
 
   drivers: IDriver[];
+
+  owneroperators: IOwnerOperator[];
   pickupDp: any;
   dropDp: any;
 
@@ -52,7 +56,8 @@ export class LoadOrderUpdateComponent implements OnInit {
     numbersOfContainer: [],
     comments: [],
     customer: [],
-    driver: []
+    driver: [],
+    ownerOperator: []
   });
 
   constructor(
@@ -61,6 +66,7 @@ export class LoadOrderUpdateComponent implements OnInit {
     protected loadOrderService: LoadOrderService,
     protected customerService: CustomerService,
     protected driverService: DriverService,
+    protected ownerOperatorService: OwnerOperatorService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -77,6 +83,12 @@ export class LoadOrderUpdateComponent implements OnInit {
     this.driverService
       .query()
       .subscribe((res: HttpResponse<IDriver[]>) => (this.drivers = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+    this.ownerOperatorService
+      .query()
+      .subscribe(
+        (res: HttpResponse<IOwnerOperator[]>) => (this.owneroperators = res.body),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
   }
 
   updateForm(loadOrder: ILoadOrder) {
@@ -104,7 +116,8 @@ export class LoadOrderUpdateComponent implements OnInit {
       numbersOfContainer: loadOrder.numbersOfContainer,
       comments: loadOrder.comments,
       customer: loadOrder.customer,
-      driver: loadOrder.driver
+      driver: loadOrder.driver,
+      ownerOperator: loadOrder.ownerOperator
     });
   }
 
@@ -192,7 +205,8 @@ export class LoadOrderUpdateComponent implements OnInit {
       numbersOfContainer: this.editForm.get(['numbersOfContainer']).value,
       comments: this.editForm.get(['comments']).value,
       customer: this.editForm.get(['customer']).value,
-      driver: this.editForm.get(['driver']).value
+      driver: this.editForm.get(['driver']).value,
+      ownerOperator: this.editForm.get(['ownerOperator']).value
     };
   }
 
@@ -217,6 +231,10 @@ export class LoadOrderUpdateComponent implements OnInit {
   }
 
   trackDriverById(index: number, item: IDriver) {
+    return item.id;
+  }
+
+  trackOwnerOperatorById(index: number, item: IOwnerOperator) {
     return item.id;
   }
 }

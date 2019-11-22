@@ -96,6 +96,11 @@ public class CustomerResourceIT {
     private static final String DEFAULT_REMARKS = "AAAAAAAAAA";
     private static final String UPDATED_REMARKS = "BBBBBBBBBB";
 
+    private static final byte[] DEFAULT_CONTRACT = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_CONTRACT = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_CONTRACT_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_CONTRACT_CONTENT_TYPE = "image/png";
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -166,7 +171,9 @@ public class CustomerResourceIT {
             .companyLogo(DEFAULT_COMPANY_LOGO)
             .companyLogoContentType(DEFAULT_COMPANY_LOGO_CONTENT_TYPE)
             .customerSince(DEFAULT_CUSTOMER_SINCE)
-            .remarks(DEFAULT_REMARKS);
+            .remarks(DEFAULT_REMARKS)
+            .contract(DEFAULT_CONTRACT)
+            .contractContentType(DEFAULT_CONTRACT_CONTENT_TYPE);
         return customer;
     }
     /**
@@ -194,7 +201,9 @@ public class CustomerResourceIT {
             .companyLogo(UPDATED_COMPANY_LOGO)
             .companyLogoContentType(UPDATED_COMPANY_LOGO_CONTENT_TYPE)
             .customerSince(UPDATED_CUSTOMER_SINCE)
-            .remarks(UPDATED_REMARKS);
+            .remarks(UPDATED_REMARKS)
+            .contract(UPDATED_CONTRACT)
+            .contractContentType(UPDATED_CONTRACT_CONTENT_TYPE);
         return customer;
     }
 
@@ -236,6 +245,8 @@ public class CustomerResourceIT {
         assertThat(testCustomer.getCompanyLogoContentType()).isEqualTo(DEFAULT_COMPANY_LOGO_CONTENT_TYPE);
         assertThat(testCustomer.getCustomerSince()).isEqualTo(DEFAULT_CUSTOMER_SINCE);
         assertThat(testCustomer.getRemarks()).isEqualTo(DEFAULT_REMARKS);
+        assertThat(testCustomer.getContract()).isEqualTo(DEFAULT_CONTRACT);
+        assertThat(testCustomer.getContractContentType()).isEqualTo(DEFAULT_CONTRACT_CONTENT_TYPE);
 
         // Validate the Customer in Elasticsearch
         verify(mockCustomerSearchRepository, times(1)).save(testCustomer);
@@ -292,7 +303,9 @@ public class CustomerResourceIT {
             .andExpect(jsonPath("$.[*].companyLogoContentType").value(hasItem(DEFAULT_COMPANY_LOGO_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].companyLogo").value(hasItem(Base64Utils.encodeToString(DEFAULT_COMPANY_LOGO))))
             .andExpect(jsonPath("$.[*].customerSince").value(hasItem(DEFAULT_CUSTOMER_SINCE.toString())))
-            .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)));
+            .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)))
+            .andExpect(jsonPath("$.[*].contractContentType").value(hasItem(DEFAULT_CONTRACT_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].contract").value(hasItem(Base64Utils.encodeToString(DEFAULT_CONTRACT))));
     }
     
     @Test
@@ -323,7 +336,9 @@ public class CustomerResourceIT {
             .andExpect(jsonPath("$.companyLogoContentType").value(DEFAULT_COMPANY_LOGO_CONTENT_TYPE))
             .andExpect(jsonPath("$.companyLogo").value(Base64Utils.encodeToString(DEFAULT_COMPANY_LOGO)))
             .andExpect(jsonPath("$.customerSince").value(DEFAULT_CUSTOMER_SINCE.toString()))
-            .andExpect(jsonPath("$.remarks").value(DEFAULT_REMARKS));
+            .andExpect(jsonPath("$.remarks").value(DEFAULT_REMARKS))
+            .andExpect(jsonPath("$.contractContentType").value(DEFAULT_CONTRACT_CONTENT_TYPE))
+            .andExpect(jsonPath("$.contract").value(Base64Utils.encodeToString(DEFAULT_CONTRACT)));
     }
 
     @Test
@@ -366,7 +381,9 @@ public class CustomerResourceIT {
             .companyLogo(UPDATED_COMPANY_LOGO)
             .companyLogoContentType(UPDATED_COMPANY_LOGO_CONTENT_TYPE)
             .customerSince(UPDATED_CUSTOMER_SINCE)
-            .remarks(UPDATED_REMARKS);
+            .remarks(UPDATED_REMARKS)
+            .contract(UPDATED_CONTRACT)
+            .contractContentType(UPDATED_CONTRACT_CONTENT_TYPE);
 
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -395,6 +412,8 @@ public class CustomerResourceIT {
         assertThat(testCustomer.getCompanyLogoContentType()).isEqualTo(UPDATED_COMPANY_LOGO_CONTENT_TYPE);
         assertThat(testCustomer.getCustomerSince()).isEqualTo(UPDATED_CUSTOMER_SINCE);
         assertThat(testCustomer.getRemarks()).isEqualTo(UPDATED_REMARKS);
+        assertThat(testCustomer.getContract()).isEqualTo(UPDATED_CONTRACT);
+        assertThat(testCustomer.getContractContentType()).isEqualTo(UPDATED_CONTRACT_CONTENT_TYPE);
 
         // Validate the Customer in Elasticsearch
         verify(mockCustomerSearchRepository, times(1)).save(testCustomer);
@@ -471,6 +490,8 @@ public class CustomerResourceIT {
             .andExpect(jsonPath("$.[*].companyLogoContentType").value(hasItem(DEFAULT_COMPANY_LOGO_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].companyLogo").value(hasItem(Base64Utils.encodeToString(DEFAULT_COMPANY_LOGO))))
             .andExpect(jsonPath("$.[*].customerSince").value(hasItem(DEFAULT_CUSTOMER_SINCE.toString())))
-            .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)));
+            .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)))
+            .andExpect(jsonPath("$.[*].contractContentType").value(hasItem(DEFAULT_CONTRACT_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].contract").value(hasItem(Base64Utils.encodeToString(DEFAULT_CONTRACT))));
     }
 }

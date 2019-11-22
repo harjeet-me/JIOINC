@@ -40,6 +40,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.jiotrasportinc.tms.domain.enumeration.StatusEnum;
+import com.jiotrasportinc.tms.domain.enumeration.HAZMAT;
 import com.jiotrasportinc.tms.domain.enumeration.COVEREDBY;
 import com.jiotrasportinc.tms.domain.enumeration.LoadType;
 import com.jiotrasportinc.tms.domain.enumeration.SizeEnum;
@@ -90,8 +91,8 @@ public class LoadOrderResourceIT {
     private static final String DEFAULT_POD_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_POD_CONTENT_TYPE = "image/png";
 
-    private static final Boolean DEFAULT_HAZMAT = false;
-    private static final Boolean UPDATED_HAZMAT = true;
+    private static final HAZMAT DEFAULT_HAZMAT = HAZMAT.YES;
+    private static final HAZMAT UPDATED_HAZMAT = HAZMAT.NO;
 
     private static final String DEFAULT_RECIEVED_BY = "AAAAAAAAAA";
     private static final String UPDATED_RECIEVED_BY = "BBBBBBBBBB";
@@ -253,7 +254,7 @@ public class LoadOrderResourceIT {
         assertThat(testLoadOrder.getChasisInTime()).isEqualTo(DEFAULT_CHASIS_IN_TIME);
         assertThat(testLoadOrder.getPod()).isEqualTo(DEFAULT_POD);
         assertThat(testLoadOrder.getPodContentType()).isEqualTo(DEFAULT_POD_CONTENT_TYPE);
-        assertThat(testLoadOrder.isHazmat()).isEqualTo(DEFAULT_HAZMAT);
+        assertThat(testLoadOrder.getHazmat()).isEqualTo(DEFAULT_HAZMAT);
         assertThat(testLoadOrder.getRecievedBy()).isEqualTo(DEFAULT_RECIEVED_BY);
         assertThat(testLoadOrder.getCoveredBy()).isEqualTo(DEFAULT_COVERED_BY);
         assertThat(testLoadOrder.getLoadType()).isEqualTo(DEFAULT_LOAD_TYPE);
@@ -313,7 +314,7 @@ public class LoadOrderResourceIT {
             .andExpect(jsonPath("$.[*].chasisInTime").value(hasItem(DEFAULT_CHASIS_IN_TIME.toString())))
             .andExpect(jsonPath("$.[*].podContentType").value(hasItem(DEFAULT_POD_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].pod").value(hasItem(Base64Utils.encodeToString(DEFAULT_POD))))
-            .andExpect(jsonPath("$.[*].hazmat").value(hasItem(DEFAULT_HAZMAT.booleanValue())))
+            .andExpect(jsonPath("$.[*].hazmat").value(hasItem(DEFAULT_HAZMAT.toString())))
             .andExpect(jsonPath("$.[*].recievedBy").value(hasItem(DEFAULT_RECIEVED_BY)))
             .andExpect(jsonPath("$.[*].coveredBy").value(hasItem(DEFAULT_COVERED_BY.toString())))
             .andExpect(jsonPath("$.[*].loadType").value(hasItem(DEFAULT_LOAD_TYPE.toString())))
@@ -347,7 +348,7 @@ public class LoadOrderResourceIT {
             .andExpect(jsonPath("$.chasisInTime").value(DEFAULT_CHASIS_IN_TIME.toString()))
             .andExpect(jsonPath("$.podContentType").value(DEFAULT_POD_CONTENT_TYPE))
             .andExpect(jsonPath("$.pod").value(Base64Utils.encodeToString(DEFAULT_POD)))
-            .andExpect(jsonPath("$.hazmat").value(DEFAULT_HAZMAT.booleanValue()))
+            .andExpect(jsonPath("$.hazmat").value(DEFAULT_HAZMAT.toString()))
             .andExpect(jsonPath("$.recievedBy").value(DEFAULT_RECIEVED_BY))
             .andExpect(jsonPath("$.coveredBy").value(DEFAULT_COVERED_BY.toString()))
             .andExpect(jsonPath("$.loadType").value(DEFAULT_LOAD_TYPE.toString()))
@@ -424,7 +425,7 @@ public class LoadOrderResourceIT {
         assertThat(testLoadOrder.getChasisInTime()).isEqualTo(UPDATED_CHASIS_IN_TIME);
         assertThat(testLoadOrder.getPod()).isEqualTo(UPDATED_POD);
         assertThat(testLoadOrder.getPodContentType()).isEqualTo(UPDATED_POD_CONTENT_TYPE);
-        assertThat(testLoadOrder.isHazmat()).isEqualTo(UPDATED_HAZMAT);
+        assertThat(testLoadOrder.getHazmat()).isEqualTo(UPDATED_HAZMAT);
         assertThat(testLoadOrder.getRecievedBy()).isEqualTo(UPDATED_RECIEVED_BY);
         assertThat(testLoadOrder.getCoveredBy()).isEqualTo(UPDATED_COVERED_BY);
         assertThat(testLoadOrder.getLoadType()).isEqualTo(UPDATED_LOAD_TYPE);
@@ -504,7 +505,7 @@ public class LoadOrderResourceIT {
             .andExpect(jsonPath("$.[*].chasisInTime").value(hasItem(DEFAULT_CHASIS_IN_TIME.toString())))
             .andExpect(jsonPath("$.[*].podContentType").value(hasItem(DEFAULT_POD_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].pod").value(hasItem(Base64Utils.encodeToString(DEFAULT_POD))))
-            .andExpect(jsonPath("$.[*].hazmat").value(hasItem(DEFAULT_HAZMAT.booleanValue())))
+            .andExpect(jsonPath("$.[*].hazmat").value(hasItem(DEFAULT_HAZMAT.toString())))
             .andExpect(jsonPath("$.[*].recievedBy").value(hasItem(DEFAULT_RECIEVED_BY)))
             .andExpect(jsonPath("$.[*].coveredBy").value(hasItem(DEFAULT_COVERED_BY.toString())))
             .andExpect(jsonPath("$.[*].loadType").value(hasItem(DEFAULT_LOAD_TYPE.toString())))

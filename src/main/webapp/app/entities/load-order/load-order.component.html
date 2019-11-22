@@ -56,6 +56,7 @@
             <th scope="col"  jhiSortBy="comments"><span jhiTranslate="jiotmsApp.loadOrder.comments">Comments</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="customer.email"><span jhiTranslate="jiotmsApp.loadOrder.customer">Customer</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="driver.id"><span jhiTranslate="jiotmsApp.loadOrder.driver">Driver</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="ownerOperator.id"><span jhiTranslate="jiotmsApp.loadOrder.ownerOperator">Owner Operator</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -80,7 +81,7 @@
                     </a>
                     <span *ngIf="loadOrder.pod">{{loadOrder.podContentType}}, {{byteSize(loadOrder.pod)}}</span>
                 </td>
-                <td>{{loadOrder.hazmat}}</td>
+                <td jhiTranslate="{{'jiotmsApp.HAZMAT.' + loadOrder.hazmat}}">{{loadOrder.hazmat}}</td>
                 <td>{{loadOrder.recievedBy}}</td>
                 <td jhiTranslate="{{'jiotmsApp.COVEREDBY.' + loadOrder.coveredBy}}">{{loadOrder.coveredBy}}</td>
                 <td jhiTranslate="{{'jiotmsApp.LoadType.' + loadOrder.loadType}}">{{loadOrder.loadType}}</td>
@@ -95,6 +96,11 @@
                 <td>
                     <div *ngIf="loadOrder.driver">
                         <a [routerLink]="['/driver', loadOrder.driver?.id, 'view' ]" >{{loadOrder.driver?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="loadOrder.ownerOperator">
+                        <a [routerLink]="['/owner-operator', loadOrder.ownerOperator?.id, 'view' ]" >{{loadOrder.ownerOperator?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

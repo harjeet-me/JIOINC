@@ -32,7 +32,8 @@
       "dot": "Dot",
       "mc": "Mc",
       "remarks": "Remarks",
-      "operInsurance": "Oper Insurance"
+      "operInsurance": "Oper Insurance",
+      "loadOrder": "Load Order"
     }
   }
 }

@@ -29,12 +29,10 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "one-to-many",
             "otherEntityName": "customer",
             "otherEntityRelationshipName": "morecontact",
-            "relationshipName": "customer",
-            "otherEntityField": "company",
-            "ownerSide": true
+            "relationshipName": "customer"
         }
     ],
     "changelogDate": "20191121074314",

@@ -56,6 +56,8 @@ public class CacheConfiguration {
             createCache(cm, com.jiotrasportinc.tms.domain.Driver.class.getName() + ".loadOrders");
             createCache(cm, com.jiotrasportinc.tms.domain.OwnerOperator.class.getName());
             createCache(cm, com.jiotrasportinc.tms.domain.Location.class.getName());
+            createCache(cm, com.jiotrasportinc.tms.domain.Contact.class.getName() + ".customers");
+            createCache(cm, com.jiotrasportinc.tms.domain.OwnerOperator.class.getName() + ".loadOrders");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.jiotrasportinc.tms.domain.enumeration.Designation;
 
@@ -44,9 +46,9 @@ public class Contact implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Customer customer;
+    @OneToMany(mappedBy = "morecontact")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Customer> customers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -135,17 +137,29 @@ public class Contact implements Serializable {
         this.remarks = remarks;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Set<Customer> getCustomers() {
+        return customers;
     }
 
-    public Contact customer(Customer customer) {
-        this.customer = customer;
+    public Contact customers(Set<Customer> customers) {
+        this.customers = customers;
         return this;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public Contact addCustomer(Customer customer) {
+        this.customers.add(customer);
+        customer.setMorecontact(this);
+        return this;
+    }
+
+    public Contact removeCustomer(Customer customer) {
+        this.customers.remove(customer);
+        customer.setMorecontact(null);
+        return this;
+    }
+
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

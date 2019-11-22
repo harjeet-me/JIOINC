@@ -117,7 +117,32 @@
                     <input type="text" class="form-control" name="remarks" id="field_remarks"
                            formControlName="remarks"/>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jiotmsApp.customer.contract" for="field_contract">Contract</label>
+                    <div>
+                        <div *ngIf="editForm.get('contract').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('contractContentType').value, editForm.get('contract').value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{editForm.get('contractContentType').value}}, {{byteSize(editForm.get('contract').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({contract: null});editForm.patchValue({contractContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_contract" (change)="setFileData($event, 'contract', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="contract" id="field_contract"
+                           formControlName="contract"/>
+                    <input type="hidden" class="form-control" name="contractContentType" id="field_contractContentType"
+                           formControlName="contractContentType" />
+                </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jiotmsApp.customer.morecontact" for="field_morecontact">Morecontact</label>
+                    <select class="form-control" id="field_morecontact" name="morecontact" formControlName="morecontact">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contactOption.id === editForm.get('morecontact').value?.id ? editForm.get('morecontact').value : contactOption" *ngFor="let contactOption of contacts; trackBy: trackContactById">{{contactOption.designation}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
